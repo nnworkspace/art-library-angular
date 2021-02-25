@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "gen:api": "openapi-generator-cli generate -g typescript-angular -i ../art-library-api/art-library-api.yml -o ./src/app/gen",
+    "prestart": "npm run gen:api",
     "start": "ng serve",
+    "prebuild": "npm run gen:api",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
