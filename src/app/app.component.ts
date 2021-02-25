@@ -12,9 +12,12 @@ export class AppComponent implements OnInit {
   public coolFaces: string[] = faces;
   public coolFace = '';
 
+  // @ViewChild
+
   ngOnInit(): void{
     const random = Math.floor(Math.random() * this.coolFaces.length);
     this.coolFace = this.coolFaces[random];
     console.log(this.coolFace);
   }
+
 }
