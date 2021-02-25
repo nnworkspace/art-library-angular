@@ -10,6 +10,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { LendingComponent } from './lending/lending.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { HeaderComponent } from './navigation/header/header.component';
+import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { WelcomeComponent } from './welcome/welcome.component';
     LoginComponent,
     InventoryComponent,
     LendingComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    HeaderComponent,
+    SidenavListComponent
   ],
   imports: [
     BrowserModule,
