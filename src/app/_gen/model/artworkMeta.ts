@@ -27,6 +27,10 @@ export interface ArtworkMeta {
      * The date when Alpha Org obtained this piece of artwork.
      */
     dateObtained?: string;
+    /**
+     * Market value of this piece of artwork. Unit in Euro.
+     */
+    marketValue?: number;
 }
 export namespace ArtworkMeta {
     export type ArtFormEnum = 'painting' | 'photograph' | 'print' | 'sculpture' | 'assemblage' | 'collage';

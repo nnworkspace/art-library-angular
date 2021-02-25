@@ -25,6 +25,10 @@ export interface Artwork {
      */
     dateObtained?: string;
     /**
+     * Market value of this piece of artwork. Unit in Euro.
+     */
+    marketValue?: number;
+    /**
      * ID of a artwork. ID of an artwork is a combination of the artist name and the artwork name and optional integer identifier
      */
     id: string;
