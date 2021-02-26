@@ -14,7 +14,7 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
 import { BorrowingComponent } from './borrowing/borrowing.component';
 import { NewBorrowingComponent } from './borrowing/new-borrowing/new-borrowing.component';
 import { CurrentBorrowingComponent } from './borrowing/current-borrowing/current-borrowing.component';
-import { PastBorrowingComponent } from './borrowing/past-borrowing/past-borrowing.component';
+import { PastBorrowingsComponent } from './borrowing/past-borrowings/past-borrowings.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,7 @@ import { PastBorrowingComponent } from './borrowing/past-borrowing/past-borrowin
     BorrowingComponent,
     NewBorrowingComponent,
     CurrentBorrowingComponent,
-    PastBorrowingComponent
+    PastBorrowingsComponent
   ],
   imports: [
     BrowserModule,
