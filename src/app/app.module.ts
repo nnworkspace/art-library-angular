@@ -8,20 +8,26 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './auth/login/login.component';
 import { InventoryComponent } from './inventory/inventory.component';
-import { LendingComponent } from './lending/lending.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
+import { BorrowingComponent } from './borrowing/borrowing.component';
+import { NewBorrowingComponent } from './borrowing/new-borrowing/new-borrowing.component';
+import { CurrentBorrowingComponent } from './borrowing/current-borrowing/current-borrowing.component';
+import { PastBorrowingComponent } from './borrowing/past-borrowing/past-borrowing.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     InventoryComponent,
-    LendingComponent,
     WelcomeComponent,
     HeaderComponent,
-    SidenavListComponent
+    SidenavListComponent,
+    BorrowingComponent,
+    NewBorrowingComponent,
+    CurrentBorrowingComponent,
+    PastBorrowingComponent
   ],
   imports: [
     BrowserModule,
