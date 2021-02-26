@@ -24,6 +24,14 @@ export interface ArtworkMeta {
     artist?: string;
     imageUrls?: Array<string>;
     /**
+     * If the artwork is a print or other manufactured article, record the publisher or manufacturer here.
+     */
+    producer?: string;
+    /**
+     * If the artwork has a serial number, record it in this property.
+     */
+    productSerialNumber?: string;
+    /**
      * The date when Alpha Org obtained this piece of artwork.
      */
     dateObtained?: string;
