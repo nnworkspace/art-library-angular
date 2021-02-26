@@ -8,7 +8,7 @@ import faces from '../assets/coolFaces.json';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'art-library-angular';
+  title = 'Art Library of Alpha Org';
   public coolFaces: string[] = faces;
   public coolFace = '';
 
