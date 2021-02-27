@@ -7,7 +7,7 @@
   <a *ngIf="user?.roles?.includes('art-lib-admin')"
      mat-list-item routerLink="/inventory" (click)="onClose()">
     <mat-icon>collections</mat-icon>
-    <span class="nav-caption">Inventory (admin only)</span>
+    <span class="nav-caption">Inventory</span>
   </a>
   <a *ngIf="user?.roles?.includes('art-lib-user')"
      mat-list-item routerLink="/borrowing" (click)="onClose()">
