@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 import {FlexLayoutModule} from "@angular/flex-layout";
 
@@ -15,6 +16,8 @@ import { BorrowingComponent } from './borrowing/borrowing.component';
 import { NewBorrowingComponent } from './borrowing/new-borrowing/new-borrowing.component';
 import { CurrentBorrowingComponent } from './borrowing/current-borrowing/current-borrowing.component';
 import { PastBorrowingsComponent } from './borrowing/past-borrowings/past-borrowings.component';
+
+import {AuthService} from './auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -34,9 +37,11 @@ import { PastBorrowingsComponent } from './borrowing/past-borrowings/past-borrow
     BrowserAnimationsModule,
     MaterialModule,
     AppRoutingModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
