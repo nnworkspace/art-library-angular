@@ -7,7 +7,7 @@ import {AuthData} from './auth-data.model';
 
 @Injectable()
 export class AuthService {
-  authChange = new Subject<boolean>();
+  authChange = new Subject<User | null>();
   private user: User | null = null;
 
   constructor( private router: Router) { }
@@ -33,7 +33,7 @@ export class AuthService {
 
   logout(): void {
     this.user = null;
-    this.authChange.next(false);
+    this.authChange.next(null);
     this.router.navigate(['/login']);
   }
 
@@ -46,7 +46,7 @@ export class AuthService {
   }
 
   private authSuccess(): void {
-    this.authChange.next(true);
+    this.authChange.next(this.getUser());
     this.router.navigate(['/borrowing']);
   }
 }

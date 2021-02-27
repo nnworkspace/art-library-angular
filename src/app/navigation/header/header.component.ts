@@ -2,6 +2,7 @@ import faces from '../../../assets/coolFaces.json';
 import {Component, OnInit, EventEmitter, Output, OnDestroy} from '@angular/core';
 import {AuthService} from '../../auth/auth.service';
 import {Subscription} from 'rxjs';
+import {User} from "../../auth/user.model";
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,7 @@ import {Subscription} from 'rxjs';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   @Output() sidenavToggle = new EventEmitter<void>();
-  isAuth = false;
+  user: User | null = null;
   authSubscription!: Subscription;
 
   //userRole = null;
@@ -25,7 +26,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.coolFace = this.coolFaces[random];
 
     this.authSubscription = this.authService.authChange.subscribe(authStatus => {
-      this.isAuth = authStatus;
+      this.user = authStatus;
     });
   }
 

@@ -7,14 +7,16 @@
   <div><a routerLink="/">{{coolFace}}</a></div>
   <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
     <ul fxLayout fxLayoutGap="10px" class="navigation-items">
-      <li *ngIf="isAuth"><a routerLink="/inventory">Inventory (admin only)</a></li>
-      <li *ngIf="isAuth"><a routerLink="/borrowing">Borrowing</a></li>
-
-      <li *ngIf="!isAuth">
+      <li *ngIf="user?.roles?.includes('art-lib-admin')">
+        <a routerLink="/inventory">Inventory</a>
+      </li>
+      <li *ngIf="user?.roles?.includes('art-lib-user')">
+        <a routerLink="/borrowing">Borrowing</a>
+      </li>
+      <li *ngIf="!user">
         <a routerLink="/login">Login</a>
       </li>
-
-      <li *ngIf="isAuth">
+      <li *ngIf="user">
         <a style="cursor: pointer" (click)="onLogout()">Logout</a>
       </li>
     </ul>

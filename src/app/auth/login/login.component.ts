@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     this.authService.login({
       userId: this.loginForm.value.userId,
       password: this.loginForm.value.password,
-      roles: Math.random() > 0.49 ? ['art-lib-admin', 'art-lib-user'] : ['art-lib-user']
+      roles: Math.random() > 0.1 ? ['art-lib-admin', 'art-lib-user'] : ['art-lib-user']
     });
   }
 

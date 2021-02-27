@@ -1,18 +1,20 @@
 <mat-nav-list>
-  <a *ngIf="!isAuth" mat-list-item routerLink="/login"
+  <a *ngIf="!user" mat-list-item routerLink="/login"
      (click)="onClose()">
     <mat-icon>face</mat-icon>
     <span class="nav-caption">Login</span>
   </a>
-  <a *ngIf="isAuth"  mat-list-item routerLink="/inventory" (click)="onClose()">
+  <a *ngIf="user?.roles?.includes('art-lib-admin')"
+     mat-list-item routerLink="/inventory" (click)="onClose()">
     <mat-icon>collections</mat-icon>
     <span class="nav-caption">Inventory (admin only)</span>
   </a>
-  <a *ngIf="isAuth" mat-list-item routerLink="/borrowing" (click)="onClose()">
+  <a *ngIf="user?.roles?.includes('art-lib-user')"
+     mat-list-item routerLink="/borrowing" (click)="onClose()">
     <mat-icon>outbox</mat-icon>
     <span class="nav-caption">Borrowing</span>
   </a>
-  <mat-list-item *ngIf="isAuth">
+  <mat-list-item *ngIf="user">
     <button mat-icon-button (click)="onLogout()">
       <mat-icon>eject</mat-icon>
       <span class="nav-caption">Logout</span>
