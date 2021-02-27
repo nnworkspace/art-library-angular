@@ -13,6 +13,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isAuth = false;
   authSubscription!: Subscription;
 
+  //userRole = null;
+
   public coolFaces: string[] = faces;
   public coolFace = '';
 

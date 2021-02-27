@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from "../auth.service";
-import {FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
+import {AuthService} from '../auth.service';
+import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     this.authService.login({
       userId: this.loginForm.value.userId,
       password: this.loginForm.value.password,
-      role: Math.random() > 0.49 ? 'art-library-admin' : 'alpha-employee'
+      roles: Math.random() > 0.49 ? ['art-lib-admin', 'art-lib-user'] : ['art-lib-user']
     });
   }
 

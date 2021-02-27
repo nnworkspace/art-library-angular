@@ -10,7 +10,7 @@ export class AuthService {
   authChange = new Subject<boolean>();
   private user: User | null = null;
 
-  constructor(private router: Router){}
+  constructor( private router: Router) { }
 
   // our app does not provide user register service,
   // all user data should come from alpha org's ldap.....
@@ -23,10 +23,11 @@ export class AuthService {
   login(authData: AuthData): void {
     this.user = {
       userId: authData.userId,
-      email: authData.userId.concat( '@alpha.org'),
-      role: authData.role
+      // email: authData.userId.concat( '@alpha.org'),
+      roles: authData.roles
     };
 
+    console.log('length of the array user roles: ' + this.user.roles.length);
     this.authSuccess();
   }
 
@@ -40,7 +41,7 @@ export class AuthService {
     return this.user == null ? null : {...this.user};
   }
 
-  isAuth(): boolean {
+  isLoggedIn(): boolean {
     return this.user != null;
   }
 
