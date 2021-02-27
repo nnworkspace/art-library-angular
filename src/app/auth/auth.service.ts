@@ -1,7 +1,10 @@
-import {User} from "./user.model";
-import {AuthData} from "./auth-data.model";
+import {Subject} from 'rxjs';
+
+import {User} from './user.model';
+import {AuthData} from './auth-data.model';
 
 export class AuthService {
+  authChange = new Subject<boolean>();
   private user: User | null = null;
 
   // our app does not provide user register service,
@@ -18,10 +21,13 @@ export class AuthService {
       email: authData.userId.concat( '@alpha.org'),
       role: authData.role
     };
+
+    this.authChange.next(true);
   }
 
   logout(): void {
     this.user = null;
+    this.authChange.next(false);
   }
 
   getUser(): User | null {
