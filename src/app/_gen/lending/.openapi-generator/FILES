@@ -1,0 +1,13 @@
+.gitignore
+README.md
+api.module.ts
+api/api.ts
+api/lendings.service.ts
+configuration.ts
+encoder.ts
+git_push.sh
+index.ts
+model/lendingMeta.ts
+model/lendingsResponse.ts
+model/models.ts
+variables.ts

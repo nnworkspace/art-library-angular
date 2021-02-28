@@ -17,7 +17,7 @@ import { HttpClient, HttpHeaders, HttpParams,
 import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
-import { ArtworksResponse } from '../model/models';
+import { LendingsResponse } from '../model/models';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -27,7 +27,7 @@ import { Configuration }                                     from '../configurat
 @Injectable({
   providedIn: 'root'
 })
-export class ArtworksService {
+export class LendingsService {
 
     protected basePath = 'https://virtserver.swaggerhub.com/nnworkspace/artlibrary/1.0.0';
     public defaultHeaders = new HttpHeaders();
@@ -85,31 +85,42 @@ export class ArtworksService {
     }
 
     /**
-     * Get a list of artworks.
-     * Returns a list of artworks. The result can be filtered by query parameters.
-     * @param name name of the artwork, can be a partial string of name
-     * @param description description of the artwork, can be a partial string of description
-     * @param artists (Partial) name of the artists, relationship between the artists in the parameter list is \&#39;or\&#39;.
+     * Get a list of lending records.
+     * Returns a list of lending records. The result can be filtered by query parameters.
+     * @param limit Specifies in response, how many records should be contained in a page.
+     * @param offset Specifies how many records should be skipped.
+     * @param userId A userId.
+     * @param artworkName A userId.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getArtworks(name?: string, description?: string, artists?: Array<string>, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/xml'}): Observable<ArtworksResponse>;
-    public getArtworks(name?: string, description?: string, artists?: Array<string>, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/xml'}): Observable<HttpResponse<ArtworksResponse>>;
-    public getArtworks(name?: string, description?: string, artists?: Array<string>, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json' | 'application/xml'}): Observable<HttpEvent<ArtworksResponse>>;
-    public getArtworks(name?: string, description?: string, artists?: Array<string>, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json' | 'application/xml'}): Observable<any> {
+    public getLendings(limit: number, offset: number, userId?: string, artworkName?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<LendingsResponse>;
+    public getLendings(limit: number, offset: number, userId?: string, artworkName?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<LendingsResponse>>;
+    public getLendings(limit: number, offset: number, userId?: string, artworkName?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<LendingsResponse>>;
+    public getLendings(limit: number, offset: number, userId?: string, artworkName?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+        if (limit === null || limit === undefined) {
+            throw new Error('Required parameter limit was null or undefined when calling getLendings.');
+        }
+        if (offset === null || offset === undefined) {
+            throw new Error('Required parameter offset was null or undefined when calling getLendings.');
+        }
 
         let queryParameters = new HttpParams({encoder: this.encoder});
-        if (name !== undefined && name !== null) {
+        if (userId !== undefined && userId !== null) {
           queryParameters = this.addToHttpParams(queryParameters,
-            <any>name, 'name');
+            <any>userId, 'userId');
         }
-        if (description !== undefined && description !== null) {
+        if (artworkName !== undefined && artworkName !== null) {
           queryParameters = this.addToHttpParams(queryParameters,
-            <any>description, 'description');
+            <any>artworkName, 'artworkName');
         }
-        if (artists) {
-            queryParameters = this.addToHttpParams(queryParameters,
-                artists.join(COLLECTION_FORMATS['csv']), 'artists');
+        if (limit !== undefined && limit !== null) {
+          queryParameters = this.addToHttpParams(queryParameters,
+            <any>limit, 'limit');
+        }
+        if (offset !== undefined && offset !== null) {
+          queryParameters = this.addToHttpParams(queryParameters,
+            <any>offset, 'offset');
         }
 
         let headers = this.defaultHeaders;
@@ -125,8 +136,7 @@ export class ArtworksService {
         if (httpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                'application/json',
-                'application/xml'
+                'application/json'
             ];
             httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -140,7 +150,7 @@ export class ArtworksService {
             responseType = 'text';
         }
 
-        return this.httpClient.get<ArtworksResponse>(`${this.configuration.basePath}/artworks`,
+        return this.httpClient.get<LendingsResponse>(`${this.configuration.basePath}/lendings`,
             {
                 params: queryParameters,
                 responseType: <any>responseType,

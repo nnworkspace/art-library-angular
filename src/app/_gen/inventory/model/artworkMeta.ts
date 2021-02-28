@@ -39,6 +39,18 @@ export interface ArtworkMeta {
      * Market value of this piece of artwork. Unit in Euro.
      */
     marketValue?: number;
+    /**
+     * Status of this artwork in alpha org.
+     */
+    status: ArtworkMeta.StatusEnum;
+    /**
+     * Nearst next date when this artwork is available for lending.
+     */
+    nextAvailableDate: string;
+    /**
+     * Any comment about this artwork
+     */
+    comment?: string;
 }
 export namespace ArtworkMeta {
     export type ArtFormEnum = 'painting' | 'photograph' | 'print' | 'sculpture' | 'assemblage' | 'collage';
@@ -49,6 +61,13 @@ export namespace ArtworkMeta {
         Sculpture: 'sculpture' as ArtFormEnum,
         Assemblage: 'assemblage' as ArtFormEnum,
         Collage: 'collage' as ArtFormEnum
+    };
+    export type StatusEnum = 'available' | 'reserved' | 'in use' | 'return reported';
+    export const StatusEnum = {
+        Available: 'available' as StatusEnum,
+        Reserved: 'reserved' as StatusEnum,
+        InUse: 'in use' as StatusEnum,
+        ReturnReported: 'return reported' as StatusEnum
     };
 }
 

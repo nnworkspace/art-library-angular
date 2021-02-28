@@ -9,11 +9,14 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ArtworkMeta } from './artworkMeta';
 
 
-export interface ArtworksResponse { 
-    totalColors?: number;
-    artworkMetas?: Array<ArtworkMeta>;
-}
+export type ArtworkStatus = 'available' | 'reserved' | 'in use' | 'return reported';
+
+export const ArtworkStatus = {
+    Available: 'available' as ArtworkStatus,
+    Reserved: 'reserved' as ArtworkStatus,
+    InUse: 'in use' as ArtworkStatus,
+    ReturnReported: 'return reported' as ArtworkStatus
+};
 

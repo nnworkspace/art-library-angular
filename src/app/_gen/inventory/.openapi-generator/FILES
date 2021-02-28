@@ -13,6 +13,7 @@ model/artForm.ts
 model/artwork.ts
 model/artworkAllOf.ts
 model/artworkMeta.ts
+model/artworkStatus.ts
 model/artworksResponse.ts
 model/models.ts
 model/newArtwork.ts

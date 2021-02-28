@@ -16,10 +16,6 @@ export interface ArtworkAllOf {
      * ID of a artwork. ID of an artwork is a combination of the artist name and the artwork name and optional integer identifier
      */
     id: string;
-    self?: string;
-    /**
-     * Time of last update of this record, a timestamp.
-     */
-    lastUpdate?: string;
+    self: string;
 }
 

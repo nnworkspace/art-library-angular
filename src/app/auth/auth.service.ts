@@ -5,7 +5,9 @@ import {Subject} from 'rxjs';
 import {User} from './user.model';
 import {AuthData} from './auth-data.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
   authChange = new Subject<User | null>();
   private user: User | null = null;
