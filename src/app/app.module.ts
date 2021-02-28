@@ -18,6 +18,10 @@ import { CurrentBorrowingComponent } from './borrowing/current-borrowing/current
 import { PastBorrowingsComponent } from './borrowing/past-borrowings/past-borrowings.component';
 
 import {AuthService} from './auth/auth.service';
+import { ArtworkListComponent } from './inventory/artwork-list/artwork-list.component';
+import { ArtworkDetailComponent } from './inventory/artwork-detail/artwork-detail.component';
+import { ArtworkItemComponent } from './inventory/artwork-list/artwork-item/artwork-item.component';
+import { ArtworkEditComponent } from './inventory/artwork-edit/artwork-edit.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,11 @@ import {AuthService} from './auth/auth.service';
     BorrowingComponent,
     NewBorrowingComponent,
     CurrentBorrowingComponent,
-    PastBorrowingsComponent
+    PastBorrowingsComponent,
+    ArtworkListComponent,
+    ArtworkDetailComponent,
+    ArtworkItemComponent,
+    ArtworkEditComponent
   ],
   imports: [
     BrowserModule,
