@@ -80,12 +80,14 @@ export namespace Artwork {
         Assemblage: 'assemblage' as ArtFormEnum,
         Collage: 'collage' as ArtFormEnum
     };
-    export type StatusEnum = 'available' | 'reserved' | 'in use' | 'return reported';
+    export type StatusEnum = 'available' | 'reserved' | 'in use' | 'return reported' | 'not for lending' | 'record deleted';
     export const StatusEnum = {
         Available: 'available' as StatusEnum,
         Reserved: 'reserved' as StatusEnum,
         InUse: 'in use' as StatusEnum,
-        ReturnReported: 'return reported' as StatusEnum
+        ReturnReported: 'return reported' as StatusEnum,
+        NotForLending: 'not for lending' as StatusEnum,
+        RecordDeleted: 'record deleted' as StatusEnum
     };
 }
 

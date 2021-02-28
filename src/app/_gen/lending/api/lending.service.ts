@@ -17,9 +17,8 @@ import { HttpClient, HttpHeaders, HttpParams,
 import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
-import { ApiResponse } from '../model/models';
-import { Artwork } from '../model/models';
-import { NewArtwork } from '../model/models';
+import { Lending } from '../model/models';
+import { NewLending } from '../model/models';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -29,7 +28,7 @@ import { Configuration }                                     from '../configurat
 @Injectable({
   providedIn: 'root'
 })
-export class ArtworkService {
+export class LendingService {
 
     protected basePath = 'https://virtserver.swaggerhub.com/nnworkspace/artlibrary/1.0.0';
     public defaultHeaders = new HttpHeaders();
@@ -87,17 +86,17 @@ export class ArtworkService {
     }
 
     /**
-     * create an artwork in the artwork list
-     * @param newArtwork A new Artwork object to be created on the server
+     * create lending in the lendings list
+     * @param newLending A new Lending object to be created on the server
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public addArtwork(newArtwork: NewArtwork, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<any>;
-    public addArtwork(newArtwork: NewArtwork, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<HttpResponse<any>>;
-    public addArtwork(newArtwork: NewArtwork, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<HttpEvent<any>>;
-    public addArtwork(newArtwork: NewArtwork, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined}): Observable<any> {
-        if (newArtwork === null || newArtwork === undefined) {
-            throw new Error('Required parameter newArtwork was null or undefined when calling addArtwork.');
+    public createLending(newLending: NewLending, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<any>;
+    public createLending(newLending: NewLending, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<HttpResponse<any>>;
+    public createLending(newLending: NewLending, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<HttpEvent<any>>;
+    public createLending(newLending: NewLending, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined}): Observable<any> {
+        if (newLending === null || newLending === undefined) {
+            throw new Error('Required parameter newLending was null or undefined when calling createLending.');
         }
 
         let headers = this.defaultHeaders;
@@ -135,8 +134,8 @@ export class ArtworkService {
             responseType = 'text';
         }
 
-        return this.httpClient.post<any>(`${this.configuration.basePath}/artworks`,
-            newArtwork,
+        return this.httpClient.post<any>(`${this.configuration.basePath}/lendings`,
+            newLending,
             {
                 responseType: <any>responseType,
                 withCredentials: this.configuration.withCredentials,
@@ -148,21 +147,21 @@ export class ArtworkService {
     }
 
     /**
-     * Deletes a piece of artwork
+     * Deletes a lending record
      * @param apiKey 
-     * @param artworkId Id of the artwork to delete
+     * @param lendingId Id of the lending record to delete
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteArtwork(apiKey: string, artworkId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<any>;
-    public deleteArtwork(apiKey: string, artworkId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<HttpResponse<any>>;
-    public deleteArtwork(apiKey: string, artworkId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<HttpEvent<any>>;
-    public deleteArtwork(apiKey: string, artworkId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined}): Observable<any> {
+    public deleteLending(apiKey: string, lendingId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<any>;
+    public deleteLending(apiKey: string, lendingId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<HttpResponse<any>>;
+    public deleteLending(apiKey: string, lendingId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<HttpEvent<any>>;
+    public deleteLending(apiKey: string, lendingId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined}): Observable<any> {
         if (apiKey === null || apiKey === undefined) {
-            throw new Error('Required parameter apiKey was null or undefined when calling deleteArtwork.');
+            throw new Error('Required parameter apiKey was null or undefined when calling deleteLending.');
         }
-        if (artworkId === null || artworkId === undefined) {
-            throw new Error('Required parameter artworkId was null or undefined when calling deleteArtwork.');
+        if (lendingId === null || lendingId === undefined) {
+            throw new Error('Required parameter lendingId was null or undefined when calling deleteLending.');
         }
 
         let headers = this.defaultHeaders;
@@ -194,7 +193,7 @@ export class ArtworkService {
             responseType = 'text';
         }
 
-        return this.httpClient.delete<any>(`${this.configuration.basePath}/artworks/${encodeURIComponent(String(artworkId))}`,
+        return this.httpClient.delete<any>(`${this.configuration.basePath}/lendings/${encodeURIComponent(String(lendingId))}`,
             {
                 responseType: <any>responseType,
                 withCredentials: this.configuration.withCredentials,
@@ -206,18 +205,18 @@ export class ArtworkService {
     }
 
     /**
-     * Find artwork by ID.
-     * Returns a single artwork with its properties such as name, description, artists, storage location, etc.
-     * @param artworkId ID of a artwork. ID of an artwork is a combination of the artist name and the artwork name and optional integer identifier
+     * Find lending by ID.
+     * Returns a single lending record with its properties such as lender\&#39;s userId, startDate, endDate, etc.
+     * @param lendingId ID of a lending record. This is an automatically generated UUID, basically time based..
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getArtworkById(artworkId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<Artwork>;
-    public getArtworkById(artworkId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<Artwork>>;
-    public getArtworkById(artworkId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<Artwork>>;
-    public getArtworkById(artworkId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
-        if (artworkId === null || artworkId === undefined) {
-            throw new Error('Required parameter artworkId was null or undefined when calling getArtworkById.');
+    public getLendingById(lendingId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<Lending>;
+    public getLendingById(lendingId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<Lending>>;
+    public getLendingById(lendingId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<Lending>>;
+    public getLendingById(lendingId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+        if (lendingId === null || lendingId === undefined) {
+            throw new Error('Required parameter lendingId was null or undefined when calling getLendingById.');
         }
 
         let headers = this.defaultHeaders;
@@ -247,7 +246,7 @@ export class ArtworkService {
             responseType = 'text';
         }
 
-        return this.httpClient.get<Artwork>(`${this.configuration.basePath}/artworks/${encodeURIComponent(String(artworkId))}`,
+        return this.httpClient.get<Lending>(`${this.configuration.basePath}/lendings/${encodeURIComponent(String(lendingId))}`,
             {
                 responseType: <any>responseType,
                 withCredentials: this.configuration.withCredentials,
@@ -259,25 +258,25 @@ export class ArtworkService {
     }
 
     /**
-     * Replace a artwork
+     * Replace a lending record
      * @param apiKey 
-     * @param artworkId Artwork id to replace
-     * @param artwork Artwork object to be updated on the server
+     * @param lendingId Lending id to replace
+     * @param lending Lending object to be updated on the server
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public replaceColorAtSelfURL(apiKey: string, artworkId: string, artwork: Artwork, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<any>;
-    public replaceColorAtSelfURL(apiKey: string, artworkId: string, artwork: Artwork, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<HttpResponse<any>>;
-    public replaceColorAtSelfURL(apiKey: string, artworkId: string, artwork: Artwork, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<HttpEvent<any>>;
-    public replaceColorAtSelfURL(apiKey: string, artworkId: string, artwork: Artwork, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined}): Observable<any> {
+    public replaceLendingAtSelfURL(apiKey: string, lendingId: string, lending: Lending, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<any>;
+    public replaceLendingAtSelfURL(apiKey: string, lendingId: string, lending: Lending, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<HttpResponse<any>>;
+    public replaceLendingAtSelfURL(apiKey: string, lendingId: string, lending: Lending, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<HttpEvent<any>>;
+    public replaceLendingAtSelfURL(apiKey: string, lendingId: string, lending: Lending, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined}): Observable<any> {
         if (apiKey === null || apiKey === undefined) {
-            throw new Error('Required parameter apiKey was null or undefined when calling replaceColorAtSelfURL.');
+            throw new Error('Required parameter apiKey was null or undefined when calling replaceLendingAtSelfURL.');
         }
-        if (artworkId === null || artworkId === undefined) {
-            throw new Error('Required parameter artworkId was null or undefined when calling replaceColorAtSelfURL.');
+        if (lendingId === null || lendingId === undefined) {
+            throw new Error('Required parameter lendingId was null or undefined when calling replaceLendingAtSelfURL.');
         }
-        if (artwork === null || artwork === undefined) {
-            throw new Error('Required parameter artwork was null or undefined when calling replaceColorAtSelfURL.');
+        if (lending === null || lending === undefined) {
+            throw new Error('Required parameter lending was null or undefined when calling replaceLendingAtSelfURL.');
         }
 
         let headers = this.defaultHeaders;
@@ -318,8 +317,8 @@ export class ArtworkService {
             responseType = 'text';
         }
 
-        return this.httpClient.put<any>(`${this.configuration.basePath}/artworks/${encodeURIComponent(String(artworkId))}`,
-            artwork,
+        return this.httpClient.put<any>(`${this.configuration.basePath}/lendings/${encodeURIComponent(String(lendingId))}`,
+            lending,
             {
                 responseType: <any>responseType,
                 withCredentials: this.configuration.withCredentials,
@@ -331,25 +330,25 @@ export class ArtworkService {
     }
 
     /**
-     * Update an exisiting artwork
+     * Update an exisiting lending
      * @param apiKey 
-     * @param artworkId Artwork id to update
-     * @param artwork Artwork object to be updated on the server
+     * @param lendingId Lending id to update
+     * @param lending Lending object to be updated on the server
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public updateArtwork(apiKey: string, artworkId: string, artwork: Artwork, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<any>;
-    public updateArtwork(apiKey: string, artworkId: string, artwork: Artwork, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<HttpResponse<any>>;
-    public updateArtwork(apiKey: string, artworkId: string, artwork: Artwork, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<HttpEvent<any>>;
-    public updateArtwork(apiKey: string, artworkId: string, artwork: Artwork, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined}): Observable<any> {
+    public updateLending(apiKey: string, lendingId: string, lending: Lending, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<any>;
+    public updateLending(apiKey: string, lendingId: string, lending: Lending, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<HttpResponse<any>>;
+    public updateLending(apiKey: string, lendingId: string, lending: Lending, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<HttpEvent<any>>;
+    public updateLending(apiKey: string, lendingId: string, lending: Lending, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined}): Observable<any> {
         if (apiKey === null || apiKey === undefined) {
-            throw new Error('Required parameter apiKey was null or undefined when calling updateArtwork.');
+            throw new Error('Required parameter apiKey was null or undefined when calling updateLending.');
         }
-        if (artworkId === null || artworkId === undefined) {
-            throw new Error('Required parameter artworkId was null or undefined when calling updateArtwork.');
+        if (lendingId === null || lendingId === undefined) {
+            throw new Error('Required parameter lendingId was null or undefined when calling updateLending.');
         }
-        if (artwork === null || artwork === undefined) {
-            throw new Error('Required parameter artwork was null or undefined when calling updateArtwork.');
+        if (lending === null || lending === undefined) {
+            throw new Error('Required parameter lending was null or undefined when calling updateLending.');
         }
 
         let headers = this.defaultHeaders;
@@ -390,71 +389,8 @@ export class ArtworkService {
             responseType = 'text';
         }
 
-        return this.httpClient.patch<any>(`${this.configuration.basePath}/artworks/${encodeURIComponent(String(artworkId))}`,
-            artwork,
-            {
-                responseType: <any>responseType,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * uploads an image
-     * @param artworkId ID of the artwork
-     * @param body 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public uploadImage(artworkId: string, body?: Blob, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<ApiResponse>;
-    public uploadImage(artworkId: string, body?: Blob, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<ApiResponse>>;
-    public uploadImage(artworkId: string, body?: Blob, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<ApiResponse>>;
-    public uploadImage(artworkId: string, body?: Blob, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
-        if (artworkId === null || artworkId === undefined) {
-            throw new Error('Required parameter artworkId was null or undefined when calling uploadImage.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        let credential: string | undefined;
-        // authentication (artworks_auth) required
-        credential = this.configuration.lookupCredential('artworks_auth');
-        if (credential) {
-            headers = headers.set('Authorization', 'Bearer ' + credential);
-        }
-
-        let httpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (httpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                'application/json'
-            ];
-            httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
-        if (httpHeaderAcceptSelected !== undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/octet-stream'
-        ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected !== undefined) {
-            headers = headers.set('Content-Type', httpContentTypeSelected);
-        }
-
-        let responseType: 'text' | 'json' = 'json';
-        if(httpHeaderAcceptSelected && httpHeaderAcceptSelected.startsWith('text')) {
-            responseType = 'text';
-        }
-
-        return this.httpClient.post<ApiResponse>(`${this.configuration.basePath}/artworks/${encodeURIComponent(String(artworkId))}/images`,
-            body,
+        return this.httpClient.patch<any>(`${this.configuration.basePath}/lendings/${encodeURIComponent(String(lendingId))}`,
+            lending,
             {
                 responseType: <any>responseType,
                 withCredentials: this.configuration.withCredentials,

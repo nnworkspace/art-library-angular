@@ -62,12 +62,13 @@ export namespace ArtworkMeta {
         Assemblage: 'assemblage' as ArtFormEnum,
         Collage: 'collage' as ArtFormEnum
     };
-    export type StatusEnum = 'available' | 'reserved' | 'in use' | 'return reported';
+    export type StatusEnum = 'available' | 'reserved' | 'in use' | 'return reported' | 'record deleted';
     export const StatusEnum = {
         Available: 'available' as StatusEnum,
         Reserved: 'reserved' as StatusEnum,
         InUse: 'in use' as StatusEnum,
-        ReturnReported: 'return reported' as StatusEnum
+        ReturnReported: 'return reported' as StatusEnum,
+        RecordDeleted: 'record deleted' as StatusEnum
     };
 }
 

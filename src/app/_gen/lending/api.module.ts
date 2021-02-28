@@ -2,6 +2,7 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { Configuration } from './configuration';
 import { HttpClient } from '@angular/common/http';
 
+import { LendingService } from './api/lending.service';
 import { LendingsService } from './api/lendings.service';
 
 @NgModule({

@@ -11,12 +11,13 @@
  */
 
 
-export type ArtworkStatus = 'available' | 'reserved' | 'in use' | 'return reported';
+export type ArtworkStatus = 'available' | 'reserved' | 'in use' | 'return reported' | 'record deleted';
 
 export const ArtworkStatus = {
     Available: 'available' as ArtworkStatus,
     Reserved: 'reserved' as ArtworkStatus,
     InUse: 'in use' as ArtworkStatus,
-    ReturnReported: 'return reported' as ArtworkStatus
+    ReturnReported: 'return reported' as ArtworkStatus,
+    RecordDeleted: 'record deleted' as ArtworkStatus
 };
 

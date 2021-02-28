@@ -11,7 +11,7 @@
  */
 
 
-export interface LendingMeta { 
+export interface NewLending { 
     /**
      * ID of a lending record. This is an automatically generated UUID, basically time based.
      */
@@ -25,11 +25,27 @@ export interface LendingMeta {
      * ID of the user who borrowed the artwork.
      */
     userId: string;
-    lendingStatus: LendingMeta.LendingStatusEnum;
+    lendingStatus: NewLending.LendingStatusEnum;
     startDate: string;
     endDate: string;
+    /**
+     * Date and time when this record is created.
+     */
+    createdOn: string;
+    /**
+     * User id of the borrower who created this record.
+     */
+    createdBy: string;
+    /**
+     * Time of last update of this record, a timestamp.
+     */
+    lastUpdatedOn: string;
+    /**
+     * User id of the admin who last updated this record.
+     */
+    lastUpdatedBy: string;
 }
-export namespace LendingMeta {
+export namespace NewLending {
     export type LendingStatusEnum = 'reserved' | 'sent to lender' | 'return reported' | 'lending closed' | 'record deleted';
     export const LendingStatusEnum = {
         Reserved: 'reserved' as LendingStatusEnum,
