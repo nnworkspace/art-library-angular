@@ -37,7 +37,7 @@ export class ArtworkListComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  // getFirstImageUrl(): string | undefined {
-  //   return this.artworkMetas?.[0].imageUrls?.[0];
-  // }
+  onItemClick(artwork: ArtworkMeta): void {
+    console.log(artwork);
+  }
 }

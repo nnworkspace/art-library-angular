@@ -1,6 +1,6 @@
 .artwork-card {
   max-width: 300px;
-  max-height: 450px;
+  height: 450px;
   margin-top: 10px;
   margin-bottom: 10px;
 
@@ -19,3 +19,8 @@
 //  .card-img {
 //
 //  }
+
+.text-scrollable-y {
+  max-height: 100px;
+  overflow-y: auto;
+}
