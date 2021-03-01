@@ -1,11 +1,14 @@
 .artwork-card {
   max-width: 300px;
   max-height: 450px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 
   img {
     // object-fit: cover; /*this makes the image in src fit to the size specified below*/
-    height: 180px;
+    height: 180px !important;
     width: auto;
+    max-width: 100%;
   }
 }
 
