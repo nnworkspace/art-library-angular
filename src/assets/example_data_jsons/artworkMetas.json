@@ -2,7 +2,7 @@
   {
     "id": "da-vinci-mona-lisa",
     "self": "artworks/da-vinci-mona-lisa",
-    "name": "Mona Lisa",
+    "title": "Mona Lisa",
     "artForm": "painting",
     "description": "Portrait painting with a mysterious smile",
     "storageLocation": "building 12 room 304 shelf 5 slot 67",
@@ -21,7 +21,7 @@
   {
     "id": "botticelli-birth-of-venus",
     "self": "artworks/botticelli-birth-of-venus",
-    "name": "Birth of Venus, the",
+    "title": "Birth of Venus, the",
     "artForm": "painting",
     "description": "Botticelli’s The Birth of Venus was the first full-length, non-religious nude since antiquity, and was made for Lorenzo de Medici. It’s claimed that the figure of the Goddess of Love is modeled after one Simonetta Cattaneo Vespucci, whose favors were allegedly shared by Lorenzo and his younger brother, Giuliano. Venus is seen being blown ashore on a giant clam shell by the wind gods Zephyrus and Aura as the personification of spring awaits on land with a cloak. Unsurprisingly, Venus attracted the ire of Savonarola, the Dominican monk who led a fundamentalist crackdown on the secular tastes of the Florentines. His campaign included the infamous “Bonfire of the Vanities” of 1497, in which “profane” objects—cosmetics, artworks, books—were burned on a pyre. The Birth of Venus was itself scheduled for incineration, but somehow escaped destruction. Botticelli, though, was so freaked out by the incident that he gave up painting for a while.",
     "storageLocation": "building 12 room 304 shelf 2 slot 1",
@@ -40,7 +40,7 @@
   {
     "id": "cartier-bresson-man-jumping-the-puddle",
     "self": "artworks/cartier-bresson-man-jumping-the-puddle",
-    "name": "Man Jumping the Puddle",
+    "title": "Man Jumping the Puddle",
     "artForm": "Photograph",
     "description": "In this, one of his most iconic photos, Henri Cartier-Bresson captured a scene through a fence behind the Saint-Lazare train station in Paris.\n\nThis image became the perfect example of what Cartier-Bresson referred to as “The Decisive Moment”.",
     "storageLocation": "building 12 room 101 shelf 2 slot 1",

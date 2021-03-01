@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "gen:api:inventory": "openapi-generator-cli generate -g typescript-angular -i ../art-library-api/art-library-inventory-api.yml -o ./src/_gen/inventory",
-    "gen:api:lending": "openapi-generator-cli generate -g typescript-angular -i ../art-library-api/art-library-lending-api.yml -o ./src/_gen/lending",
+    "gen:api:inventory": "openapi-generator-cli generate -g typescript-angular -i ../art-library-api/art-library-inventory-api.yml -o ./src/gen/inventory",
+    "gen:api:lending": "openapi-generator-cli generate -g typescript-angular -i ../art-library-api/art-library-lending-api.yml -o ./src/gen/lending",
     "prestart": "npm run gen:api:inventory && npm run gen:api:lending",
     "start": "ng serve",
     "prebuild": "npm run gen:api:inventory && npm run gen:api:lending",
