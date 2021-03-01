@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   user: User | null = null;
   authSubscription!: Subscription;
 
-  //userRole = null;
+  // userRole = null;
 
   public coolFaces: string[] = faces;
   public coolFace = '';

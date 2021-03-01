@@ -1,0 +1,23 @@
+<div fxLayout="column">
+  <section>
+    filter form
+  </section>
+  <section>
+    <mat-list fxFlex fxLayout>
+        <mat-list-item *ngFor="let artwork of artworkMetas" >
+          <mat-card class="artwork-card">
+            <mat-card-header>
+              <mat-card-title>{{artwork.title}}</mat-card-title>
+              <mat-card-subtitle>{{artwork.artist}}</mat-card-subtitle>
+            </mat-card-header>
+              <img mat-card-image
+                   src="{{artwork.imageUrls ? artwork.imageUrls[0] : null}}"
+                   alt="Photo of {{artwork.title}}">
+            <mat-card-content>
+              <p>{{artwork.description}}</p>
+            </mat-card-content>
+          </mat-card>
+        </mat-list-item>
+    </mat-list>
+  </section>
+</div>

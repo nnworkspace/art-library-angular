@@ -18,10 +18,15 @@ import { CurrentBorrowingComponent } from './borrowing/current-borrowing/current
 import { PastBorrowingsComponent } from './borrowing/past-borrowings/past-borrowings.component';
 
 import {AuthService} from './auth/auth.service';
-import { ArtworkListComponent } from './inventory/artwork-list/artwork-list.component';
-import { ArtworkDetailComponent } from './inventory/artwork-detail/artwork-detail.component';
-import { ArtworkItemComponent } from './inventory/artwork-list/artwork-item/artwork-item.component';
-import { ArtworkEditComponent } from './inventory/artwork-edit/artwork-edit.component';
+import { ArtworkListComponent } from './inventory/artworks/artwork-list/artwork-list.component';
+import { ArtworkDetailComponent } from './inventory/artworks/artwork-detail/artwork-detail.component';
+import { ArtworkItemComponent } from './inventory/artworks/artwork-list/artwork-item/artwork-item.component';
+import { ArtworkEditComponent } from './inventory/artworks/artwork-edit/artwork-edit.component';
+import { LendingListComponent } from './inventory/lendings/lending-list/lending-list.component';
+import { LendingDetailComponent } from './inventory/lendings/lending-detail/lending-detail.component';
+import { LendingItemComponent } from './inventory/lendings/lending-list/lending-item/lending-item.component';
+import { LendingsFilterComponent } from './inventory/lendings/lending-list/lendings-filter/lendings-filter.component';
+import { ArtworksFilterComponent } from './inventory/artworks/artwork-list/artworks-filter/artworks-filter.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +43,12 @@ import { ArtworkEditComponent } from './inventory/artwork-edit/artwork-edit.comp
     ArtworkListComponent,
     ArtworkDetailComponent,
     ArtworkItemComponent,
-    ArtworkEditComponent
+    ArtworkEditComponent,
+    LendingListComponent,
+    LendingDetailComponent,
+    LendingItemComponent,
+    LendingsFilterComponent,
+    ArtworksFilterComponent
   ],
   imports: [
     BrowserModule,
