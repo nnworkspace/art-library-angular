@@ -1,2 +1,2 @@
-http://127.0.0.1:4010/artworks?name=aspernatur&description=quisquam&artists=vitae,ad,distinctio,facilis,rem,fugit,quod,et,quam,qui,sunt,cumque,unde,quam,similique,cumque,rerum,non,eum,fuga&limit=856&offset=164
+http://127.0.0.1:4010/artworks?title=aspernatur&description=quisquam&artists=vitae,ad,distinctio,facilis,rem,fugit,quod,et,quam,qui,sunt,cumque,unde,quam,similique,cumque,rerum,non,eum,fuga&limit=856&offset=164
 

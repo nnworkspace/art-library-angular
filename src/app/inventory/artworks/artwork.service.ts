@@ -1,8 +1,9 @@
+import {SmileysService} from '../../_common/smileys.service';
 import metas from '../../../assets/example_data_jsons/artworkMetas.json';
 import artworkJson from '../../../assets/example_data_jsons/get_artwork_by_id_response.json';
 import {Injectable} from '@angular/core';
-import {Observable, Subject} from 'rxjs';
 
+import {Observable, Subject} from 'rxjs';
 import {ArtworkMeta} from '../../_model/artworkMeta';
 import {Artwork} from '../../_model/artwork';
 
@@ -14,7 +15,11 @@ export class ArtworkService {
   private artwork: Artwork = artworkJson;
   // private ao = new Observable<Artwork>(artworkJson);
 
-  constructor() {}
+  constructor(private smileysService: SmileysService ) {
+    console.log(smileysService.getSmiley() + ' from ArtworkService constructor: ');
+    console.log('artwork from static json file: ');
+    console.log(this.artwork);
+  }
 
   getArtworkMetas(): ArtworkMeta[] {
     return this.artworkMetas.slice();

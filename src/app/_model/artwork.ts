@@ -1,6 +1,6 @@
 /**
  * Art Library of Alpha Org
- * This is a server for Art Library of Alpha Org. 
+ * This is a server for Art Library of Alpha Org.
  *
  * The version of the OpenAPI document: 0.1.0
  * Contact: nnworkspace@gmail.com
@@ -13,7 +13,7 @@ import { NewArtwork } from './newArtwork';
 import { ArtworkAllOf } from './artworkAllOf';
 
 
-export interface Artwork { 
+export interface Artwork {
     title: string;
     artForm: Artwork.ArtFormEnum;
     description?: string;
