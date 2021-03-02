@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import faces from '../assets/coolFaces.json';
+import {SmileysService} from './_common/smileys.service';
 
 @Component({
   selector: 'app-root',
@@ -9,15 +9,11 @@ import faces from '../assets/coolFaces.json';
 })
 export class AppComponent implements OnInit {
   title = 'Art Library of Alpha Org';
-  public coolFaces: string[] = faces;
-  public coolFace = '';
 
-  // @ViewChild
+  constructor(private smileysService: SmileysService) {}
 
   ngOnInit(): void{
-    const random = Math.floor(Math.random() * this.coolFaces.length);
-    this.coolFace = this.coolFaces[random];
-    console.log(this.coolFace);
+    console.log(this.smileysService.getSmiley());
   }
 
 }

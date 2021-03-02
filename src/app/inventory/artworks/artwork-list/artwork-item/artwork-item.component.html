@@ -1,15 +1,15 @@
 <mat-card fxFlex="0 1 auto"
-          class="artwork-card"
-          (click)="onItemClick(artwork)">
-  <mat-card-header>
+          class="artwork-card">
+  <mat-card-header (click)="onItemClick(artwork)">
     <mat-card-title>{{artwork.title}}</mat-card-title>
     <mat-card-subtitle>{{artwork.artist}}</mat-card-subtitle>
   </mat-card-header>
 
-  <div class="image-container">
+  <div class="image-container clickable">
     <img mat-card-image
          src="{{artwork.imageUrls ? artwork.imageUrls[0] : null}}"
-         alt="Photo of {{artwork.title}}">
+         alt="Photo of {{artwork.title}}"
+         (click)="onItemClick(artwork)">
   </div>
   <mat-card-content>
     <div class="text-scrollable-y">

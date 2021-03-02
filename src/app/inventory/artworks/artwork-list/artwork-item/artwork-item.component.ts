@@ -1,3 +1,4 @@
+import {SmileysService} from '../../../../_common/smileys.service';
 import {Component, Input, OnInit} from '@angular/core';
 import {ArtworkMeta} from '../../../../_model/artworkMeta';
 import {ArtworkItemUsecaseEnum} from '../../artwork-item-usecase-enum.model';
@@ -12,12 +13,13 @@ export class ArtworkItemComponent implements OnInit {
   @Input() index!: number;
   @Input() useCase = ArtworkItemUsecaseEnum.viewOnly;
 
-  constructor() { }
+  constructor(private smileysService: SmileysService) {}
 
   ngOnInit(): void {
   }
 
   onItemClick(artwork: ArtworkMeta): void {
+    console.log(this.smileysService.getSmiley());
     console.log(artwork);
   }
 }

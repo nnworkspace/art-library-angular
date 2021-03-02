@@ -1,8 +1,8 @@
-import faces from '../../../assets/coolFaces.json';
 import {Component, OnInit, EventEmitter, Output, OnDestroy} from '@angular/core';
 import {AuthService} from '../../auth/auth.service';
 import {Subscription} from 'rxjs';
-import {User} from "../../auth/user.model";
+import {User} from '../../auth/user.model';
+import {SmileysService} from '../../_common/smileys.service';
 
 @Component({
   selector: 'app-header',
@@ -16,14 +16,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   // userRole = null;
 
-  public coolFaces: string[] = faces;
   public coolFace = '';
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private smileysService: SmileysService,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
-    const random = Math.floor(Math.random() * this.coolFaces.length);
-    this.coolFace = this.coolFaces[random];
+    this.coolFace = this.smileysService.getSmiley();
 
     this.authSubscription = this.authService.authChange.subscribe(authStatus => {
       this.user = authStatus;
