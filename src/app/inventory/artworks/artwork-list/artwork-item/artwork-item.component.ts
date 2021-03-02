@@ -13,6 +13,8 @@ export class ArtworkItemComponent implements OnInit {
   @Input() index!: number;
   @Input() useCase = ArtworkItemUsecaseEnum.viewOnly;
 
+  itemUsecase: typeof ArtworkItemUsecaseEnum = ArtworkItemUsecaseEnum;
+
   constructor(private smileysService: SmileysService) {}
 
   ngOnInit(): void {
