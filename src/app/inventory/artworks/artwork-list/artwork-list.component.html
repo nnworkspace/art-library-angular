@@ -10,26 +10,11 @@
     <div fxLayout="row wrap"
          fxLayoutGap="20px"
          fxLayoutAlign="flex-start">
-      <mat-card fxFlex="0 1 calc(33.3% - 20px)"
-        class="artwork-card"
-        *ngFor="let artwork of artworkMetas"
-        (click)="onItemClick(artwork)">
-        <mat-card-header>
-          <mat-card-title>{{artwork.title}}</mat-card-title>
-          <mat-card-subtitle>{{artwork.artist}}</mat-card-subtitle>
-        </mat-card-header>
-
-        <div class="image-container">
-        <img mat-card-image
-             src="{{artwork.imageUrls ? artwork.imageUrls[0] : null}}"
-             alt="Photo of {{artwork.title}}">
-        </div>
-        <mat-card-content>
-          <div class="text-scrollable-y">
-          {{artwork.description}}
-          </div>
-        </mat-card-content>
-      </mat-card>
+      <app-artwork-item
+        *ngFor="let artworkEl of artworkMetas; let i = index"
+        [artwork]="artworkEl"
+        [index]="i"
+        [useCase]="itemUsecase.admin"></app-artwork-item>
     </div>
 <!--        </mat-list-item>-->
 <!--    </mat-list>-->

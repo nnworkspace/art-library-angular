@@ -154,11 +154,11 @@
   {
     "id": "da-vinci-mona-lisa",
     "self": "artworks/da-vinci-mona-lisa",
-    "title": "Mona Lisa",
+    "title": "Mona Lisa very long title to be truncated very very long",
     "artForm": "painting",
     "description": "Portrait painting with a mysterious smile",
     "storageLocation": "building 12 room 304 shelf 5 slot 67",
-    "artist": "Leonardo da Vinci",
+    "artist": "Leonardo da Vinci, blah lbha blah blah blah blah blah blah blah ",
     "imageUrls": [
       "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/1280px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg"
     ],

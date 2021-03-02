@@ -4,6 +4,7 @@ import {Subscription} from 'rxjs';
 
 import {ArtworkService} from '../artwork.service';
 import {ArtworkMeta} from '../../../_model/artworkMeta';
+import {ArtworkItemUsecaseEnum} from '../artwork-item-usecase-enum.model';
 
 @Component({
   selector: 'app-artwork-list',
@@ -11,6 +12,7 @@ import {ArtworkMeta} from '../../../_model/artworkMeta';
   styleUrls: ['./artwork-list.component.scss']
 })
 export class ArtworkListComponent implements OnInit, OnDestroy {
+  itemUsecase: typeof ArtworkItemUsecaseEnum = ArtworkItemUsecaseEnum;
 
   artworkMetas: ArtworkMeta[] | null = null;
   subscription!: Subscription;
@@ -35,9 +37,5 @@ export class ArtworkListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-  }
-
-  onItemClick(artwork: ArtworkMeta): void {
-    console.log(artwork);
   }
 }
