@@ -26,6 +26,8 @@ export class ArtworkService {
   }
 
   getArtworkById(artworkId: string): Artwork {
+    console.log('smileysService.getSmiley() in ArtworkService.getArtworkById: ');
+    console.log('artworkId: ' + artworkId);
     return this.artwork;
   }
 }

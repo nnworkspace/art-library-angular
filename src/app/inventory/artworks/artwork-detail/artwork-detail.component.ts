@@ -22,9 +22,10 @@ export class ArtworkDetailComponent implements OnInit {
               private artworkService: ArtworkService,
               private router: Router,
               private route: ActivatedRoute) {
-    console.log(smileysService.getSmiley() + ' from ArtworkDetailComponent');
+    console.log(smileysService.getSmiley() + ' from ArtworkDetailComponent constructor');
     this.usecase = this.router.getCurrentNavigation()?.extras.state?.artworkDetailUsecase;
     this.artworkId = this.route.snapshot.paramMap.get('artworkId');
+    console.log('current navigation: ' + this.router.getCurrentNavigation());
     console.log('usecase: ' + this.usecase);
   }
 
@@ -32,6 +33,18 @@ export class ArtworkDetailComponent implements OnInit {
     if (this.artworkId) {
       this.artwork = this.artworkService.getArtworkById(this.artworkId);
     }
+  }
+
+  onEdit(): void {
+    console.log(this.smileysService.getSmiley());
+    console.log('Going to edit the artwork: ' + this.artwork);
+    this.usecase = this.detailUsecase.adminUpdate;
+
+    // this.router.navigate(['artworks', this.artwork.id], {
+    //   state: { artworkDetailUsecase: this.detailUsecase.adminUpdate }
+    // });
+
+    console.log(this.usecase);
   }
 
 }

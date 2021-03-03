@@ -1,6 +1,6 @@
 <mat-card fxFlex="0 1 auto"
           class="artwork-card">
-  <mat-card-header (click)="onItemClick(artwork)">
+  <mat-card-header (click)="onItemView()">
     <mat-card-title>{{artwork.title}}</mat-card-title>
     <mat-card-subtitle>{{artwork.artist}}</mat-card-subtitle>
   </mat-card-header>
@@ -9,7 +9,7 @@
     <img mat-card-image
          src="{{artwork.imageUrls ? artwork.imageUrls[0] : null}}"
          alt="Photo of {{artwork.title}}"
-         (click)="onItemClick(artwork)">
+         (click)="onItemView()">
   </div>
   <mat-card-content>
     <div class="text-scrollable-y">
@@ -19,7 +19,7 @@
   <mat-card-actions fxLayoutAlign="flex-end">
     <div fxFlex fxLayout fxLayoutAlign="flex-end">
       <ng-container *ngIf="useCase === itemUsecase.admin">
-        <button mat-icon-button>
+        <button mat-icon-button (click)="onItemEdit()">
           <mat-icon color="accent">edit</mat-icon>
         </button>
         <button mat-icon-button>

@@ -28,11 +28,19 @@ export class ArtworkItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onItemClick(artwork: ArtworkMeta): void {
+  onItemView(): void {
     console.log(this.smileysService.getSmiley());
-    console.log(artwork);
+    console.log('Going to view the artwork: ' + this.artwork);
     this.router.navigate(['artworks', this.artwork.id], {
       state: { artworkDetailUsecase: this.detailUsecase.adminRead }
+    });
+  }
+
+  onItemEdit(): void {
+    console.log(this.smileysService.getSmiley());
+    console.log('Going to edit the artwork: ' + this.artwork);
+    this.router.navigate(['artworks', this.artwork.id], {
+      state: { artworkDetailUsecase: this.detailUsecase.adminUpdate }
     });
   }
 }

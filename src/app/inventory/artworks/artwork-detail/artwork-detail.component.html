@@ -1,3 +1,13 @@
 {{usecase}}
 {{artworkId}}
 {{artwork.title}}
+
+
+<ng-container *ngIf="usecase === detailUsecase.adminRead">
+  <button mat-icon-button (click)="onEdit()">
+    <mat-icon color="accent">edit</mat-icon>
+  </button>
+  <button mat-icon-button>
+    <mat-icon color="warn">delete</mat-icon>
+  </button>
+</ng-container>
