@@ -1,13 +1,54 @@
-{{usecase}}
-{{artworkId}}
-{{artwork.title}}
+<div fxFlex fxLayout="column" fxLayoutAlign="center center">
+  <!-- header of the detail, changes text according to usecase -->
+  <div *ngIf="usecase === detailUsecase.adminRead ||usecase === detailUsecase.userRead">
+    <h2>Details of the Artwork {{artworkId}}</h2>
+  </div>
+  <div *ngIf="usecase === detailUsecase.adminCreate">
+    <h2>Add a New Piece of Artwork</h2>
+  </div>
+  <div *ngIf="usecase === detailUsecase.adminUpdate">
+    <h2>Update Artwork {{artworkId}}</h2>
+  </div>
 
+  <!-- ~~~~~~~~~~~~~~~~~ form of the details ~~~~~~~~~~~~~~~~~~ -->
+  <div>
+    <form fxFlex fxLayout="column" fxLayoutAlign="center start"
+      [formGroup]="artworkForm" (ngSubmit)="onSubmit()">
+      <div fxFlex fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="15px">
+        <mat-form-field>
+          <mat-label>title</mat-label>
+          <input matInput placeholder="title of the artwork"
+                 formControlName="title">
+  <!--        <mat-hint>Please enter the title of the artwork.</mat-hint>-->
+          <mat-error>Missing artwork title!</mat-error>
+        </mat-form-field>
 
-<ng-container *ngIf="usecase === detailUsecase.adminRead">
-  <button mat-icon-button (click)="onEdit()">
-    <mat-icon color="accent">edit</mat-icon>
-  </button>
-  <button mat-icon-button>
-    <mat-icon color="warn">delete</mat-icon>
-  </button>
-</ng-container>
+        <mat-form-field>
+          <mat-label>art form</mat-label>
+          <mat-select formControlName="artForm">
+            <mat-option *ngFor="let artformOption of artFormOptions" [value]="artformOption">
+              {{artformOption}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <mat-form-field>
+        <mat-label>description</mat-label>
+        <textarea matInput placeholder="description of the artwork"
+               formControlName="description"></textarea>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <div>
+    <ng-container *ngIf="usecase === detailUsecase.adminRead">
+      <button mat-icon-button (click)="onEdit()">
+        <mat-icon color="accent">edit</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon color="warn">delete</mat-icon>
+      </button>
+    </ng-container>
+  </div>
+
+</div>

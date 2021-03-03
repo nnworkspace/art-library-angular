@@ -15,7 +15,7 @@ export class ArtworkService {
   private artwork: Artwork = artworkJson;
   // private ao = new Observable<Artwork>(artworkJson);
 
-  constructor(private smileysService: SmileysService ) {
+  constructor( private smileysService: SmileysService ) {
     console.log(smileysService.getSmiley() + ' from ArtworkService constructor: ');
     console.log('artwork from static json file: ');
     console.log(this.artwork);
