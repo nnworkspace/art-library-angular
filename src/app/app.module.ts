@@ -21,7 +21,6 @@ import {AuthService} from './auth/auth.service';
 import { ArtworkListComponent } from './inventory/artworks/artwork-list/artwork-list.component';
 import { ArtworkDetailComponent } from './inventory/artworks/artwork-detail/artwork-detail.component';
 import { ArtworkItemComponent } from './inventory/artworks/artwork-list/artwork-item/artwork-item.component';
-import { ArtworkEditComponent } from './inventory/artworks/artwork-edit/artwork-edit.component';
 import { LendingListComponent } from './inventory/lendings/lending-list/lending-list.component';
 import { LendingDetailComponent } from './inventory/lendings/lending-detail/lending-detail.component';
 import { LendingItemComponent } from './inventory/lendings/lending-list/lending-item/lending-item.component';
@@ -43,7 +42,6 @@ import { ArtworksFilterComponent } from './inventory/artworks/artwork-list/artwo
     ArtworkListComponent,
     ArtworkDetailComponent,
     ArtworkItemComponent,
-    ArtworkEditComponent,
     LendingListComponent,
     LendingDetailComponent,
     LendingItemComponent,
