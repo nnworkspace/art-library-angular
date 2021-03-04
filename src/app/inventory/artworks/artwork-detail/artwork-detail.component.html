@@ -14,16 +14,15 @@
   <div>
     <form fxFlex fxLayout="column" fxLayoutAlign="center start"
       [formGroup]="artworkForm" (ngSubmit)="onSubmit()">
-      <div fxFlex fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="15px">
-        <mat-form-field>
+      <div fxFlex fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+        <mat-form-field fxFlex="75">
           <mat-label>title</mat-label>
-          <input matInput placeholder="title of the artwork"
-                 formControlName="title">
+          <input matInput formControlName="title">
   <!--        <mat-hint>Please enter the title of the artwork.</mat-hint>-->
           <mat-error>Missing artwork title!</mat-error>
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field fxFlex="25">
           <mat-label>art form</mat-label>
           <mat-select formControlName="artForm">
             <mat-option *ngFor="let artformOption of artFormOptions" [value]="artformOption">
@@ -32,10 +31,66 @@
           </mat-select>
         </mat-form-field>
       </div>
+
+      <mat-form-field>
+        <mat-label>artist</mat-label>
+        <input matInput formControlName="artist">
+      </mat-form-field>
+
       <mat-form-field>
         <mat-label>description</mat-label>
         <textarea matInput placeholder="description of the artwork"
                formControlName="description"></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>storage location</mat-label>
+        <input matInput placeholder="The exact location where the artwork is stored."
+                  formControlName="storageLocation">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>producer</mat-label>
+        <input matInput formControlName="producer">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>product serial number</mat-label>
+        <input matInput formControlName="productSerialNumber">
+      </mat-form-field>
+
+      <div class="row">
+        <mat-form-field>
+          <mat-label>date obtained</mat-label>
+          <input matInput formControlName="dateObtained">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>market value</mat-label>
+          <input matInput formControlName="marketValue">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field fxFlex="30">
+          <mat-label>status</mat-label>
+          <mat-select formControlName="status">
+            <mat-option *ngFor="let statusOption of statusOptions" [value]="statusOption">
+              {{statusOption}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="70">
+          <mat-label>next available date</mat-label>
+          <input matInput formControlName="nextAvailableDate">
+        </mat-form-field>
+      </div>
+
+      <mat-form-field>
+        <mat-label>comment</mat-label>
+        <textarea matInput placeholder="administrative comment of the artwork"
+                  formControlName="comment"></textarea>
       </mat-form-field>
     </form>
   </div>

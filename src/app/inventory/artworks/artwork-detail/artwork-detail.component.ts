@@ -51,6 +51,18 @@ export class ArtworkDetailComponent implements OnInit {
     this.artworkForm.get('title')?.enable();
     this.artworkForm.get('artForm')?.enable();
     this.artworkForm.get('description')?.enable();
+    this.artworkForm.get('storageLocation')?.enable();
+    this.artworkForm.get('artist')?.enable();
+    this.artworkForm.get('producer')?.enable();
+    this.artworkForm.get('productSerialNumber')?.enable();
+    this.artworkForm.get('dateObtained')?.enable();
+    this.artworkForm.get('marketValue')?.enable();
+    this.artworkForm.get('status')?.enable();
+    this.artworkForm.get('comment')?.enable();
+    this.artworkForm.get('imageUrls')?.enable();
+    // this.artworkForm.get('')?.enable();
+    // this.artworkForm.get('')?.enable();
+    // this.artworkForm.get('')?.enable();
 
     // this.router.navigate(['artworks', this.artwork.id], {
     //   state: { artworkDetailUsecase: this.detailUsecase.adminUpdate }
@@ -107,16 +119,16 @@ export class ArtworkDetailComponent implements OnInit {
       title: new FormControl({value: ffTitle, disabled: this.readOnly()}, Validators.required),
       artForm: new FormControl({value: ffArtForm, disabled: this.readOnly()}, Validators.required),
       description: new FormControl({value: ffDescription, disabled: this.readOnly()}),
-      storageLocation: new FormControl(ffStorageLocation, Validators.required),
-      artist: new FormControl(ffArtist),
-      producer: new FormControl(ffProducer),
-      productSerialNumber: new FormControl(ffProductSerialNumber),
-      imageUrls: new FormControl(ffImageUrls),
-      dateObtained: new FormControl(ffDateObtained),
-      marketValue: new FormControl(ffMarketValue),
-      status: new FormControl(ffStatus, Validators.required),
-      nextAvailableDate: new FormControl(ffNextAvailableDate),
-      comment: new FormControl(ffComment)
+      storageLocation: new FormControl({value: ffStorageLocation, disabled: this.readOnly()}, Validators.required),
+      artist: new FormControl({value: ffArtist, disabled: this.readOnly()}),
+      producer: new FormControl({value: ffProducer, disabled: this.readOnly()}),
+      productSerialNumber: new FormControl({value: ffProductSerialNumber, disabled: this.readOnly()}),
+      dateObtained: new FormControl({value: ffDateObtained, disabled: this.readOnly()}),
+      marketValue: new FormControl({value: ffMarketValue, disabled: this.readOnly()}),
+      status: new FormControl({value: ffStatus, disabled: this.readOnly()}, Validators.required),
+      nextAvailableDate: new FormControl({value: ffNextAvailableDate, disabled: this.readOnly()}),
+      imageUrls: new FormControl({value: ffImageUrls, disabled: this.readOnly()}),
+      comment: new FormControl({value: ffComment, disabled: this.readOnly()})
     });
   }
 
