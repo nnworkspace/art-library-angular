@@ -6,6 +6,8 @@ import {ArtworkDetailUsecaseEnum} from '../artwork-detail-usecase-enum.model';
 import {SmileysService} from '../../../_common/smileys.service';
 import {ArtworkService} from '../artwork.service';
 import {Artwork} from '../../../_model/artwork';
+import {DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
+import {DATE_ISO_FORMATS, DateIsoAdapter} from '../../../_common/date-iso.adapter';
 
 @Component({
   selector: 'app-artwork-detail',
@@ -60,7 +62,7 @@ export class ArtworkDetailComponent implements OnInit {
     this.artworkForm.get('status')?.enable();
     this.artworkForm.get('comment')?.enable();
     this.artworkForm.get('imageUrls')?.enable();
-    // this.artworkForm.get('')?.enable();
+    this.artworkForm.get('nextAvailableDate')?.enable();
     // this.artworkForm.get('')?.enable();
     // this.artworkForm.get('')?.enable();
 
@@ -116,16 +118,20 @@ export class ArtworkDetailComponent implements OnInit {
     }
 
     this.artworkForm = new FormGroup({
-      title: new FormControl({value: ffTitle, disabled: this.readOnly()}, Validators.required),
-      artForm: new FormControl({value: ffArtForm, disabled: this.readOnly()}, Validators.required),
+      title: new FormControl({value: ffTitle, disabled: this.readOnly()},
+        Validators.required),
+      artForm: new FormControl({value: ffArtForm, disabled: this.readOnly()},
+        Validators.required),
       description: new FormControl({value: ffDescription, disabled: this.readOnly()}),
-      storageLocation: new FormControl({value: ffStorageLocation, disabled: this.readOnly()}, Validators.required),
+      storageLocation: new FormControl({value: ffStorageLocation, disabled: this.readOnly()},
+        Validators.required),
       artist: new FormControl({value: ffArtist, disabled: this.readOnly()}),
       producer: new FormControl({value: ffProducer, disabled: this.readOnly()}),
       productSerialNumber: new FormControl({value: ffProductSerialNumber, disabled: this.readOnly()}),
       dateObtained: new FormControl({value: ffDateObtained, disabled: this.readOnly()}),
       marketValue: new FormControl({value: ffMarketValue, disabled: this.readOnly()}),
-      status: new FormControl({value: ffStatus, disabled: this.readOnly()}, Validators.required),
+      status: new FormControl({value: ffStatus, disabled: this.readOnly()},
+        Validators.required),
       nextAvailableDate: new FormControl({value: ffNextAvailableDate, disabled: this.readOnly()}),
       imageUrls: new FormControl({value: ffImageUrls, disabled: this.readOnly()}),
       comment: new FormControl({value: ffComment, disabled: this.readOnly()})

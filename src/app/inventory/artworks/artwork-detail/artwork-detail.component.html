@@ -62,12 +62,15 @@
       <div class="row">
         <mat-form-field>
           <mat-label>date obtained</mat-label>
-          <input matInput formControlName="dateObtained">
+          <input matInput type="date" [matDatepicker]="dateObtaiedPicker"
+                 formControlName="dateObtained">
+          <mat-datepicker-toggle matSuffix [for]="dateObtaiedPicker"></mat-datepicker-toggle>
+          <mat-datepicker #dateObtaiedPicker></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field>
-          <mat-label>market value</mat-label>
-          <input matInput formControlName="marketValue">
+          <mat-label>market value in €</mat-label>
+          <input matInput type="number" formControlName="marketValue">
         </mat-form-field>
       </div>
 
@@ -83,7 +86,10 @@
 
         <mat-form-field fxFlex="70">
           <mat-label>next available date</mat-label>
-          <input matInput formControlName="nextAvailableDate">
+          <input matInput type="date" [matDatepicker]="nextAvailableDatePicker"
+                 formControlName="nextAvailableDate">
+          <mat-datepicker-toggle matSuffix [for]="nextAvailableDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #nextAvailableDatePicker></mat-datepicker>
         </mat-form-field>
       </div>
 
