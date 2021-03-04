@@ -24,8 +24,6 @@ export class ArtworkDetailComponent implements OnInit {
   artFormOptions = Object.values(Artwork.ArtFormEnum);
   statusOptions = Object.values(Artwork.StatusEnum);
 
-  // artFormOptions = Artwork.ArtFormEnum.iterator();
-
   constructor(private smileysService: SmileysService,
               private artworkService: ArtworkService,
               private router: Router,
@@ -61,20 +59,34 @@ export class ArtworkDetailComponent implements OnInit {
     this.artworkForm.get('marketValue')?.enable();
     this.artworkForm.get('status')?.enable();
     this.artworkForm.get('comment')?.enable();
-    this.artworkForm.get('imageUrls')?.enable();
+    // this.artworkForm.get('imageUrls')?.enable();
     this.artworkForm.get('nextAvailableDate')?.enable();
-    // this.artworkForm.get('')?.enable();
-    // this.artworkForm.get('')?.enable();
 
-    // this.router.navigate(['artworks', this.artwork.id], {
-    //   state: { artworkDetailUsecase: this.detailUsecase.adminUpdate }
-    // });
+    if (this.artworkForm.get('imageUrls')) {
+      this.getImageUrlCtrls().forEach((imageUrlCtrl, index) => {
+        imageUrlCtrl.enable();
+      });
+    }
+    this.artworkForm.get('')?.enable();
+    this.artworkForm.get('')?.enable();
+
+    this.router.navigate(['artworks', this.artwork.id], {
+      state: { artworkDetailUsecase: this.detailUsecase.adminUpdate }
+    });
 
     console.log(this.usecase);
   }
 
+  onAddImageUrl(): void {
+
+  }
+
   onSubmit(): void {
 
+  }
+
+  getImageUrlCtrls(): FormControl[] {
+    return (this.artworkForm.get('imageUrls') as FormArray).controls as FormControl[];
   }
 
   private initForm(): void {
@@ -88,7 +100,7 @@ export class ArtworkDetailComponent implements OnInit {
     let ffArtist: string | undefined = '';
     let ffProducer: string | undefined = '';
     let ffProductSerialNumber: string | undefined = '';
-    let ffImageUrls: string[] = [] ;
+    const ffImageUrls = new FormArray([]);
     let ffDateObtained: Date = new Date(1970, 1, 1);
     let ffMarketValue: number | undefined;
     let ffStatus = Artwork.StatusEnum.Available;
@@ -106,7 +118,12 @@ export class ArtworkDetailComponent implements OnInit {
       ffProducer = this.artwork.producer;
       ffProductSerialNumber = this.artwork.productSerialNumber;
       if (this.artwork.imageUrls) {
-        ffImageUrls = this.artwork.imageUrls;
+        // ffImageUrls = this.artwork.imageUrls;
+        for (const imageUrl of this.artwork.imageUrls) {
+          ffImageUrls.push(new FormControl({value: imageUrl, disabled: this.readOnly()}));
+        }
+
+        console.log('editing of image 0 url disabled? ' + ffImageUrls.at(0).disabled);
       }
       if (this.artwork.dateObtained) {
         ffDateObtained = new Date(this.artwork.dateObtained);
@@ -133,7 +150,7 @@ export class ArtworkDetailComponent implements OnInit {
       status: new FormControl({value: ffStatus, disabled: this.readOnly()},
         Validators.required),
       nextAvailableDate: new FormControl({value: ffNextAvailableDate, disabled: this.readOnly()}),
-      imageUrls: new FormControl({value: ffImageUrls, disabled: this.readOnly()}),
+      imageUrls: ffImageUrls,
       comment: new FormControl({value: ffComment, disabled: this.readOnly()})
     });
   }
@@ -141,5 +158,10 @@ export class ArtworkDetailComponent implements OnInit {
   private readOnly(): boolean {
     return this.usecase === this.detailUsecase.adminRead
       || this.usecase === this.detailUsecase.userRead;
+  }
+
+  editable(): boolean {
+    return this.usecase === this.detailUsecase.adminUpdate
+      || this.usecase === this.detailUsecase.adminCreate;
   }
 }

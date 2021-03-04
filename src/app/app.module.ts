@@ -59,10 +59,9 @@ import {DATE_ISO_FORMATS, DateIsoAdapter} from './_common/date-iso.adapter';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [AuthService,
-    {
-      provide: DateAdapter, useClass: DateIsoAdapter
-    },
+  providers: [AuthService, {
+    provide: DateAdapter, useClass: DateIsoAdapter
+  },
     {
       provide: MAT_DATE_FORMATS, useValue: DATE_ISO_FORMATS
     }],

@@ -1,11 +1,15 @@
 // inspired from https://stackblitz.com/edit/angular-material-datepicker-format?embed=1&file=app/date.adapter.ts
+import {Injectable} from '@angular/core';
 import {NativeDateAdapter} from '@angular/material/core';
 
+@Injectable()
 export class DateIsoAdapter extends NativeDateAdapter {
 
   private readonly SEPARATOR = '-';
 
   parse(value: any): Date | null {
+    console.log('............ calling parse..................');
+
     if ((typeof value === 'string') && (value.indexOf(this.SEPARATOR) > -1)) {
       const str = value.split(this.SEPARATOR);
       const year = Number(str[0]);
@@ -18,10 +22,15 @@ export class DateIsoAdapter extends NativeDateAdapter {
   }
 
   format(date: Date, displayFormat: string): string {
+    console.log('............ calling format..................');
+    console.log('date: ' + date);
+    console.log('displayFormat: ' + displayFormat);
+
     if (displayFormat === 'input') {
       const day = date.getDate();
       const month = date.getMonth() + 1;
       const year = date.getFullYear();
+
       return year + this.SEPARATOR  + this._to2digit(month) + this.SEPARATOR + this._to2digit(day);
     } else if (displayFormat === 'inputMonth') {
       const month = date.getMonth() + 1;
