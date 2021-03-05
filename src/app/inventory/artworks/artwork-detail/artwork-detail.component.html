@@ -140,19 +140,19 @@
         </mat-form-field>
 
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ buttons ~~~~~~~~~~~~~~~~~~~~~~~  -->
-<!--        <div class="row" fxLayoutAlign="flex-end">-->
-<!--          <ng-container *ngIf="isEditing()">-->
-<!--            <button mat-button (click)="onCancel()">-->
-<!--              <mat-icon color="accent">cancel</mat-icon> Cancel-->
-<!--            </button>-->
-<!--            <button mat-button (click)="onSubmit()">-->
-<!--              <mat-icon color="primary">check_circle</mat-icon> Submit-->
-<!--            </button>-->
+        <div class="row" fxLayoutAlign="flex-end">
+          <ng-container *ngIf="isEditing()">
+            <button mat-button (click)="onCancel()">
+              <mat-icon color="accent">cancel</mat-icon> Cancel
+            </button>
+            <button mat-button (click)="onSubmit()">
+              <mat-icon color="primary">check_circle</mat-icon> Submit
+            </button>
+          </ng-container>
+<!--          <ng-container *ngIf="useCase === itemUsecase.lending">-->
+<!--            <button mat-icon-button><mat-icon color="primary">send</mat-icon></button>-->
 <!--          </ng-container>-->
-<!--&lt;!&ndash;          <ng-container *ngIf="useCase === itemUsecase.lending">&ndash;&gt;-->
-<!--&lt;!&ndash;            <button mat-icon-button><mat-icon color="primary">send</mat-icon></button>&ndash;&gt;-->
-<!--&lt;!&ndash;          </ng-container>&ndash;&gt;-->
-<!--        </div>-->
+        </div>
       </form>
     </div>
 

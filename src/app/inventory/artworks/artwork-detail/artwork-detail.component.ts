@@ -17,7 +17,7 @@ export class ArtworkDetailComponent implements OnInit {
 
   detailUsecase: typeof ArtworkDetailUsecaseEnum = ArtworkDetailUsecaseEnum;
   usecase = ArtworkDetailUsecaseEnum.viewOnly;
-  artwork = {} as Artwork;
+  artwork: {[index: string]:any} = {} as Artwork;
   artworkId: string | null = null;
   artworkForm!: FormGroup;
   artFormOptions = Object.values(Artwork.ArtFormEnum);
@@ -48,33 +48,43 @@ export class ArtworkDetailComponent implements OnInit {
     console.log(this.smileysService.getSmiley());
     console.log('Going to edit the artwork: ' + this.artwork);
     this.usecase = this.detailUsecase.adminUpdate;
-    this.artworkForm.get('title')?.enable();
-    this.artworkForm.get('artForm')?.enable();
-    this.artworkForm.get('description')?.enable();
-    this.artworkForm.get('storageLocation')?.enable();
-    this.artworkForm.get('artist')?.enable();
-    this.artworkForm.get('producer')?.enable();
-    this.artworkForm.get('productSerialNumber')?.enable();
-    this.artworkForm.get('dateObtained')?.enable();
-    this.artworkForm.get('marketValue')?.enable();
-    this.artworkForm.get('status')?.enable();
-    this.artworkForm.get('comment')?.enable();
-    // this.artworkForm.get('imageUrls')?.enable();
-    this.artworkForm.get('nextAvailableDate')?.enable();
 
-    if (this.artworkForm.get('imageUrls')) {
-      this.getImageUrlCtrls().forEach((imageUrlCtrl, index) => {
-        imageUrlCtrl.enable();
-      });
+    // this.initForm();
+
+    // this.artworkForm.get('title')?.enable();
+    // this.artworkForm.get('artForm')?.enable();
+    // this.artworkForm.get('description')?.enable();
+    // this.artworkForm.get('storageLocation')?.enable();
+    // this.artworkForm.get('artist')?.enable();
+    // this.artworkForm.get('producer')?.enable();
+    // this.artworkForm.get('productSerialNumber')?.enable();
+    // this.artworkForm.get('dateObtained')?.enable();
+    // this.artworkForm.get('marketValue')?.enable();
+    // this.artworkForm.get('status')?.enable();
+    // this.artworkForm.get('comment')?.enable();
+    // this.artworkForm.get('nextAvailableDate')?.enable();
+
+    for (const field in this.artworkForm.controls) { // 'field' is a string
+      console.log(field);
+
+      this.artworkForm.get(field)?.enable();
     }
-    this.artworkForm.get('')?.enable();
-    this.artworkForm.get('')?.enable();
 
-    this.router.navigate(['artworks', this.artwork.id], {
-      state: { artworkDetailUsecase: this.detailUsecase.adminUpdate }
-    });
+    // if (this.artworkForm.get('imageUrls')) {
+    //   this.getImageUrlCtrls().forEach((imageUrlCtrl, index) => {
+    //     imageUrlCtrl.enable();
+    //   });
+    // }
+
+    // this.artworkForm.get('')?.enable();
+    // this.artworkForm.get('')?.enable();
+
+    // this.router.navigate(['artworks', this.artwork.id], {
+    //   state: { artworkDetailUsecase: this.detailUsecase.adminUpdate }
+    // });
 
     console.log(this.usecase);
+    // location.reload();
   }
 
   onAddImageUrl(): void {
@@ -88,7 +98,26 @@ export class ArtworkDetailComponent implements OnInit {
   onCancel(): void {
     if (this.usecase === this.detailUsecase.adminUpdate) {
       this.usecase = this.detailUsecase.adminRead;
-      this.location.back();
+
+      // this.initForm();
+
+      for (const field in this.artworkForm.controls) { // 'field' is a string
+        if (field !== 'imageUrls') {
+          this.artworkForm.get(field)?.setValue(this.artwork[field]);
+          this.artworkForm.get(field)?.disable();
+        }
+      }
+
+      this.getImageUrlCtrls().length = 0;
+      const imageUrlFa = this.getImageUrlFormArray();
+      imageUrlFa.clear();
+      this.artwork.imageUrls.forEach((url: string) => {
+        console.log(url);
+        imageUrlFa.push(new FormControl({url, disabled: true}));
+      });
+
+      // console.log('is status disabled? ' + this.artworkForm.get('status')?.disabled);
+
     } else if (this.usecase === this.detailUsecase.adminCreate) {
       // this.router.navigate(['../'], {relativeTo: this.route});
       this.location.back();
@@ -111,6 +140,10 @@ export class ArtworkDetailComponent implements OnInit {
 
   getImageUrlCtrls(): FormControl[] {
     return (this.artworkForm.get('imageUrls') as FormArray).controls as FormControl[];
+  }
+
+  private getImageUrlFormArray(): FormArray {
+    return this.artworkForm.get('imageUrls') as FormArray;
   }
 
   private initForm(): void {
