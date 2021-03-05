@@ -1,16 +1,17 @@
 <div fxFlex fxLayout fxLayoutAlign="start start">
   <!-- image container -->
-  <div fxFlex="50" fxLayout="column" fxLayoutGap="10px">
+  <div fxFlex="40" fxLayout="column" fxLayoutGap="10px">
     <div *ngIf="artworkForm.get('imageUrls')">
       <ng-container *ngFor="let imageUrl of getImageUrlCtrls(); let i = index">
-      <img [src]="imageUrl.value" alt="Picture {{i}} of {{artworkForm.get('title')}}"
+      <img src="{{imageUrl.value}}" alt="Picture {{i + 1}} of {{artworkForm.get('title')?.value}}"
            class="detailImage">
+<!--        <h3>{{imageUrl.value}}</h3>-->
       </ng-container>
     </div>
   </div>
 
   <!-- form container -->
-  <div fxFlex="50" fxLayout="column" fxLayoutAlign="center center">
+  <div fxFlex="60" fxLayout="column" fxLayoutAlign="center center">
     <!-- header of the detail, changes text according to usecase -->
     <div *ngIf="usecase === detailUsecase.adminRead ||usecase === detailUsecase.userRead">
       <h2>Details of the Artwork {{artworkId}}</h2>
@@ -108,16 +109,26 @@
 
         <div class="row">
           <p>Image URLs:</p>
-          <button *ngIf="editable()" mat-icon-button (click)="onAddImageUrl()">
-            <mat-icon color="accent">add</mat-icon>
+          <!-- without the type='button', the form will automatically submit when this button is clicked! -->
+          <button type="button" *ngIf="editable()" mat-icon-button (click)="onAddImageUrl()">
+            <mat-icon color="primary">add</mat-icon>
           </button>
         </div>
 
         <ng-container *ngIf="artworkForm.get('imageUrls')">
-          <mat-form-field *ngFor="let imageUrl of getImageUrlCtrls(); let i = index">
-            <mat-label>image {{i}} URL</mat-label>
-            <input matInput type="url" [value]="imageUrl.value" [disabled]="imageUrl.disabled">
+          <div class="row" fxLayoutAlign="flex-end"
+               *ngFor="let imageUrl of getImageUrlCtrls(); let i = index">
+          <mat-form-field>
+            <mat-label>image {{i + 1}} URL</mat-label>
+            <input matInput [value]="imageUrl.value" [disabled]="imageUrl.disabled">
           </mat-form-field>
+
+          <button type="button" *ngIf="editable()"
+                  mat-icon-button
+                  (click)="onDeleteImageUrl(i)">
+            <mat-icon color="warn">delete_outline</mat-icon>
+          </button>
+          </div>
         </ng-container>
 
         <mat-form-field>
@@ -125,6 +136,21 @@
           <textarea matInput placeholder="administrative comment of the artwork"
                     formControlName="comment"></textarea>
         </mat-form-field>
+
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ buttons ~~~~~~~~~~~~~~~~~~~~~~~  -->
+<!--        <div class="row" fxLayoutAlign="flex-end">-->
+<!--          <ng-container *ngIf="isEditing()">-->
+<!--            <button mat-button (click)="onCancel()">-->
+<!--              <mat-icon color="accent">cancel</mat-icon> Cancel-->
+<!--            </button>-->
+<!--            <button mat-button (click)="onSubmit()">-->
+<!--              <mat-icon color="primary">check_circle</mat-icon> Submit-->
+<!--            </button>-->
+<!--          </ng-container>-->
+<!--&lt;!&ndash;          <ng-container *ngIf="useCase === itemUsecase.lending">&ndash;&gt;-->
+<!--&lt;!&ndash;            <button mat-icon-button><mat-icon color="primary">send</mat-icon></button>&ndash;&gt;-->
+<!--&lt;!&ndash;          </ng-container>&ndash;&gt;-->
+<!--        </div>-->
       </form>
     </div>
 

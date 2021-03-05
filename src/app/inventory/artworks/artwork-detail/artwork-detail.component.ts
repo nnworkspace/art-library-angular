@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 
@@ -6,8 +7,6 @@ import {ArtworkDetailUsecaseEnum} from '../artwork-detail-usecase-enum.model';
 import {SmileysService} from '../../../_common/smileys.service';
 import {ArtworkService} from '../artwork.service';
 import {Artwork} from '../../../_model/artwork';
-import {DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
-import {DATE_ISO_FORMATS, DateIsoAdapter} from '../../../_common/date-iso.adapter';
 
 @Component({
   selector: 'app-artwork-detail',
@@ -27,7 +26,8 @@ export class ArtworkDetailComponent implements OnInit {
   constructor(private smileysService: SmileysService,
               private artworkService: ArtworkService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private location: Location) {
     console.log(smileysService.getSmiley() + ' from ArtworkDetailComponent constructor');
 
     this.usecase = this.router.getCurrentNavigation()?.extras.state?.artworkDetailUsecase;
@@ -78,11 +78,35 @@ export class ArtworkDetailComponent implements OnInit {
   }
 
   onAddImageUrl(): void {
+    this.getImageUrlCtrls().push(new FormControl());
+  }
+
+  onDeleteImageUrl(i: number): void {
+    this.getImageUrlCtrls().splice(i, 1);
+  }
+
+  onCancel(): void {
+    if (this.usecase === this.detailUsecase.adminUpdate) {
+      this.usecase = this.detailUsecase.adminRead;
+      this.location.back();
+    } else if (this.usecase === this.detailUsecase.adminCreate) {
+      // this.router.navigate(['../'], {relativeTo: this.route});
+      this.location.back();
+    }
+  }
+
+  onReset(): void {
 
   }
 
   onSubmit(): void {
+    console.log(this.smileysService.getSmiley() +  ' ArtworkDetailComponent.onSubmit() is called' );
+    if (this.usecase === this.detailUsecase.adminUpdate) {
 
+    } else if (this.usecase === this.detailUsecase.adminCreate) {
+
+    }
+   // this.onCancel();
   }
 
   getImageUrlCtrls(): FormControl[] {
@@ -161,6 +185,11 @@ export class ArtworkDetailComponent implements OnInit {
   }
 
   editable(): boolean {
+    return this.usecase === this.detailUsecase.adminUpdate
+      || this.usecase === this.detailUsecase.adminCreate;
+  }
+
+  isEditing(): boolean {
     return this.usecase === this.detailUsecase.adminUpdate
       || this.usecase === this.detailUsecase.adminCreate;
   }
