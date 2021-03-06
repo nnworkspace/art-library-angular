@@ -49,42 +49,14 @@ export class ArtworkDetailComponent implements OnInit {
     console.log('Going to edit the artwork: ' + this.artwork);
     this.usecase = this.detailUsecase.adminUpdate;
 
-    // this.initForm();
-
-    // this.artworkForm.get('title')?.enable();
-    // this.artworkForm.get('artForm')?.enable();
-    // this.artworkForm.get('description')?.enable();
-    // this.artworkForm.get('storageLocation')?.enable();
-    // this.artworkForm.get('artist')?.enable();
-    // this.artworkForm.get('producer')?.enable();
-    // this.artworkForm.get('productSerialNumber')?.enable();
-    // this.artworkForm.get('dateObtained')?.enable();
-    // this.artworkForm.get('marketValue')?.enable();
-    // this.artworkForm.get('status')?.enable();
-    // this.artworkForm.get('comment')?.enable();
-    // this.artworkForm.get('nextAvailableDate')?.enable();
-
+    // tslint:disable-next-line:forin
     for (const field in this.artworkForm.controls) { // 'field' is a string
       console.log(field);
 
       this.artworkForm.get(field)?.enable();
     }
 
-    // if (this.artworkForm.get('imageUrls')) {
-    //   this.getImageUrlCtrls().forEach((imageUrlCtrl, index) => {
-    //     imageUrlCtrl.enable();
-    //   });
-    // }
-
-    // this.artworkForm.get('')?.enable();
-    // this.artworkForm.get('')?.enable();
-
-    // this.router.navigate(['artworks', this.artwork.id], {
-    //   state: { artworkDetailUsecase: this.detailUsecase.adminUpdate }
-    // });
-
     console.log(this.usecase);
-    // location.reload();
   }
 
   onAddImageUrl(): void {
@@ -108,15 +80,15 @@ export class ArtworkDetailComponent implements OnInit {
         }
       }
 
-      this.getImageUrlCtrls().length = 0;
       const imageUrlFa = this.getImageUrlFormArray();
       imageUrlFa.clear();
       this.artwork.imageUrls.forEach((url: string) => {
-        console.log(url);
-        imageUrlFa.push(new FormControl({url, disabled: true}));
+        imageUrlFa.push(new FormControl({value: url, disabled: true}));
+        console.log('How many items in imageUrlFa? ' + this.getImageUrlCtrls().length);
       });
 
-      // console.log('is status disabled? ' + this.artworkForm.get('status')?.disabled);
+      // const firstCtrl = this.getImageUrlCtrls()[0].value;
+      // console.log('First item in imageUrlFa? ' + firstCtrl);
 
     } else if (this.usecase === this.detailUsecase.adminCreate) {
       // this.router.navigate(['../'], {relativeTo: this.route});
