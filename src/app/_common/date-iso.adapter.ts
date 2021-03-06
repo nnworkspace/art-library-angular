@@ -8,7 +8,7 @@ export class DateIsoAdapter extends NativeDateAdapter {
   private readonly SEPARATOR = '-';
 
   parse(value: any): Date | null {
-    console.log('............ calling parse..................');
+    // console.log('............ calling parse..................');
 
     if ((typeof value === 'string') && (value.indexOf(this.SEPARATOR) > -1)) {
       const str = value.split(this.SEPARATOR);
@@ -22,9 +22,9 @@ export class DateIsoAdapter extends NativeDateAdapter {
   }
 
   format(date: Date, displayFormat: string): string {
-    console.log('............ calling format..................');
-    console.log('date: ' + date);
-    console.log('displayFormat: ' + displayFormat);
+    // console.log('............ calling format..................');
+    // console.log('date: ' + date);
+    // console.log('displayFormat: ' + displayFormat);
 
     if (displayFormat === 'input') {
       const day = date.getDate();

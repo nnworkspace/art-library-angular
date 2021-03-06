@@ -17,9 +17,10 @@ export class ArtworkDetailComponent implements OnInit {
 
   detailUsecase: typeof ArtworkDetailUsecaseEnum = ArtworkDetailUsecaseEnum;
   usecase = ArtworkDetailUsecaseEnum.viewOnly;
-  artwork: {[index: string]:any} = {} as Artwork;
+  artwork: {[index: string]: any} = {} as Artwork;
   artworkId: string | null = null;
   artworkForm!: FormGroup;
+
   artFormOptions = Object.values(Artwork.ArtFormEnum);
   statusOptions = Object.values(Artwork.StatusEnum);
 
@@ -44,82 +45,9 @@ export class ArtworkDetailComponent implements OnInit {
     this.initForm();
   }
 
-  onEdit(): void {
-    console.log(this.smileysService.getSmiley());
-    console.log('Going to edit the artwork: ' + this.artwork);
-    this.usecase = this.detailUsecase.adminUpdate;
-
-    // tslint:disable-next-line:forin
-    for (const field in this.artworkForm.controls) { // 'field' is a string
-      console.log(field);
-
-      this.artworkForm.get(field)?.enable();
-    }
-
-    console.log(this.usecase);
-  }
-
-  onAddImageUrl(): void {
-    this.getImageUrlCtrls().push(new FormControl());
-  }
-
-  onDeleteImageUrl(i: number): void {
-    this.getImageUrlCtrls().splice(i, 1);
-  }
-
-  onCancel(): void {
-    if (this.usecase === this.detailUsecase.adminUpdate) {
-      this.usecase = this.detailUsecase.adminRead;
-
-      // this.initForm();
-
-      for (const field in this.artworkForm.controls) { // 'field' is a string
-        if (field !== 'imageUrls') {
-          this.artworkForm.get(field)?.setValue(this.artwork[field]);
-          this.artworkForm.get(field)?.disable();
-        }
-      }
-
-      const imageUrlFa = this.getImageUrlFormArray();
-      imageUrlFa.clear();
-      this.artwork.imageUrls.forEach((url: string) => {
-        imageUrlFa.push(new FormControl({value: url, disabled: true}));
-        console.log('How many items in imageUrlFa? ' + this.getImageUrlCtrls().length);
-      });
-
-      // const firstCtrl = this.getImageUrlCtrls()[0].value;
-      // console.log('First item in imageUrlFa? ' + firstCtrl);
-
-    } else if (this.usecase === this.detailUsecase.adminCreate) {
-      // this.router.navigate(['../'], {relativeTo: this.route});
-      this.location.back();
-    }
-  }
-
-  onReset(): void {
-
-  }
-
-  onSubmit(): void {
-    console.log(this.smileysService.getSmiley() +  ' ArtworkDetailComponent.onSubmit() is called' );
-    if (this.usecase === this.detailUsecase.adminUpdate) {
-
-    } else if (this.usecase === this.detailUsecase.adminCreate) {
-
-    }
-   // this.onCancel();
-  }
-
-  getImageUrlCtrls(): FormControl[] {
-    return (this.artworkForm.get('imageUrls') as FormArray).controls as FormControl[];
-  }
-
-  private getImageUrlFormArray(): FormArray {
-    return this.artworkForm.get('imageUrls') as FormArray;
-  }
-
   private initForm(): void {
     // prefix 'f' means 'form field';
+
     // step 1, initialize all fields with empty strings:
     // let id = '';
     let ffTitle = '';
@@ -146,14 +74,11 @@ export class ArtworkDetailComponent implements OnInit {
       ffArtist = this.artwork.artist;
       ffProducer = this.artwork.producer;
       ffProductSerialNumber = this.artwork.productSerialNumber;
-      if (this.artwork.imageUrls) {
-        // ffImageUrls = this.artwork.imageUrls;
-        for (const imageUrl of this.artwork.imageUrls) {
-          ffImageUrls.push(new FormControl({value: imageUrl, disabled: this.readOnly()}));
-        }
 
-        console.log('editing of image 0 url disabled? ' + ffImageUrls.at(0).disabled);
-      }
+      this.artwork.imageUrls?.forEach((imageUrl: string, index: number) => {
+        ffImageUrls.push(new FormControl({value: imageUrl, disabled: this.readOnly()}));
+      });
+
       if (this.artwork.dateObtained) {
         ffDateObtained = new Date(this.artwork.dateObtained);
       }
@@ -184,9 +109,66 @@ export class ArtworkDetailComponent implements OnInit {
     });
   }
 
-  private readOnly(): boolean {
-    return this.usecase === this.detailUsecase.adminRead
-      || this.usecase === this.detailUsecase.userRead;
+  onEdit(): void {
+    console.log(this.smileysService.getSmiley());
+    console.log('Going to edit the artwork: ' + this.artwork);
+    this.usecase = this.detailUsecase.adminUpdate;
+
+    // tslint:disable-next-line:forin
+    for (const field in this.artworkForm.controls) { // 'field' is a string
+      console.log(field);
+
+      this.artworkForm.get(field)?.enable();
+    }
+
+    console.log(this.usecase);
+  }
+
+  onAddImageUrl(): void {
+    this.getImageUrlCtrls().push(new FormControl());
+  }
+
+  onDeleteImageUrl(i: number): void {
+    this.getImageUrlCtrls().splice(i, 1);
+  }
+
+  onCancel(): void {
+    if (this.usecase === this.detailUsecase.adminUpdate) {
+      this.usecase = this.detailUsecase.adminRead;
+
+      for (const field in this.artworkForm.controls) { // 'field' is a string
+        if (field !== 'imageUrls') {
+          this.artworkForm.get(field)?.setValue(this.artwork[field]);
+          this.artworkForm.get(field)?.disable();
+        }
+      }
+
+      const imageUrlFa = this.getImageUrlFormArray();
+      imageUrlFa.clear();
+      this.artwork.imageUrls.forEach((url: string) => {
+        imageUrlFa.push(new FormControl({value: url, disabled: true}));
+        console.log('How many items in imageUrlFa? ' + this.getImageUrlCtrls().length);
+      });
+
+    } else if (this.usecase === this.detailUsecase.adminCreate) {
+      // this.router.navigate(['../'], {relativeTo: this.route});
+      this.location.back();
+    }
+  }
+
+  onReset(): void {
+
+  }
+
+  onSubmit(): void {
+    console.log(this.smileysService.getSmiley() +  ' ArtworkDetailComponent.onSubmit() is called' );
+    if (this.usecase === this.detailUsecase.adminUpdate) {
+
+    } else if (this.usecase === this.detailUsecase.adminCreate) {
+
+    }
+
+    this.onCancel();
   }
 
   editable(): boolean {
@@ -198,4 +180,18 @@ export class ArtworkDetailComponent implements OnInit {
     return this.usecase === this.detailUsecase.adminUpdate
       || this.usecase === this.detailUsecase.adminCreate;
   }
+
+  getImageUrlCtrls(): FormControl[] {
+    return (this.artworkForm.get('imageUrls') as FormArray).controls as FormControl[];
+  }
+
+  getImageUrlFormArray(): FormArray {
+    return this.artworkForm.get('imageUrls') as FormArray;
+  }
+
+  private readOnly(): boolean {
+    return this.usecase === this.detailUsecase.adminRead
+      || this.usecase === this.detailUsecase.userRead;
+  }
+
 }

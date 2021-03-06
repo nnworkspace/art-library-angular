@@ -1,11 +1,10 @@
 <div fxFlex fxLayout fxLayoutAlign="start start">
   <!-- image container -->
-  <div fxFlex="40" fxLayout="column" fxLayoutGap="10px">
+  <div fxFlex="40" fxLayout="column" fxLayoutGap="25px">
     <div *ngIf="artworkForm.get('imageUrls')">
       <ng-container *ngFor="let imageUrl of getImageUrlCtrls(); let i = index">
       <img [src]="imageUrl.value" alt="Picture {{i + 1}} of {{artworkForm.get('title')?.value}}"
            class="detailImage">
-<!--        <h3>{{imageUrl.value}}</h3>-->
       </ng-container>
     </div>
   </div>
@@ -26,8 +25,7 @@
     <!-- ~~~~~~~~~~~~~~~~~ form of the details ~~~~~~~~~~~~~~~~~~ -->
     <div class="detailForm">
       <form fxFlex fxLayout="column" fxLayoutAlign="center start"
-        [formGroup]="artworkForm" (ngSubmit)="onSubmit()"
-        >
+        [formGroup]="artworkForm" (ngSubmit)="onSubmit()">
         <div class="row">
           <mat-form-field fxFlex="75">
             <mat-label>title</mat-label>
@@ -119,11 +117,10 @@
 
         <ng-container *ngIf="artworkForm.get('imageUrls')">
           <div class="row" fxLayoutAlign="flex-end"
-               *ngFor="let imageUrl of getImageUrlCtrls(); let i = index">
+               *ngFor="let urlCtrl of getImageUrlCtrls(); index as i">
           <mat-form-field>
             <mat-label>image {{i + 1}} URL</mat-label>
-            <input matInput
-                   [value]="imageUrl.value" [disabled]="imageUrl.disabled">
+            <input matInput [formControl]="urlCtrl">
           </mat-form-field>
 
           <button type="button" *ngIf="editable()"
