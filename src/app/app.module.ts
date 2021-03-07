@@ -28,6 +28,7 @@ import {LendingsFilterComponent} from './inventory/lendings/lending-list/lending
 import {ArtworksFilterComponent} from './inventory/artworks/artwork-list/artworks-filter/artworks-filter.component';
 import {DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
 import {DATE_ISO_FORMATS, DateIsoAdapter} from './_common/date-iso.adapter';
+import { ArtworksComponent } from './inventory/artworks/artworks.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import {DATE_ISO_FORMATS, DateIsoAdapter} from './_common/date-iso.adapter';
     LendingDetailComponent,
     LendingItemComponent,
     LendingsFilterComponent,
-    ArtworksFilterComponent
+    ArtworksFilterComponent,
+    ArtworksComponent
   ],
   imports: [
     BrowserModule,
