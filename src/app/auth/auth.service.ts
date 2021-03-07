@@ -12,7 +12,7 @@ export class AuthService {
   authChange = new Subject<User | null>();
   private user: User | null = null;
 
-  constructor( private router: Router) { }
+  constructor(private router: Router) { }
 
   // our app does not provide user register service,
   // all user data should come from alpha org's ldap.....
@@ -49,6 +49,10 @@ export class AuthService {
 
   private authSuccess(): void {
     this.authChange.next(this.getUser());
-    this.router.navigate(['/borrowing']);
+
+    // back to previous page
+    const { redirect } = window.history.state;
+    console.log('redirect: ' + redirect);
+    this.router.navigateByUrl(redirect || '');
   }
 }

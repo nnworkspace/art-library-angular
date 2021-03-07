@@ -9,13 +9,11 @@ import {AuthService} from './auth.service';
 })
 export class AuthGuard implements CanActivate{
 
-  constructor(
-    private authService: AuthService,
-    private router: Router) { }
+  constructor(private authService: AuthService,
+              private router: Router) { }
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  canActivate(route: ActivatedRouteSnapshot,
+              state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     if (this.authService.isLoggedIn()) {
       const userRoles = this.authService.getUser()?.roles;
@@ -27,7 +25,9 @@ export class AuthGuard implements CanActivate{
       }
     }
 
-    this.router.navigate(['/login']);
+    console.log('Could not authenticate');
+    console.log('this.router.url: ' + this.router.url);
+    this.router.navigate(['login'], {state: {redirect: state.url}});
     return false;
   }
 }
