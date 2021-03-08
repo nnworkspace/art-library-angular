@@ -1,3 +1,15 @@
+// Import theming functions
+@import '~@angular/material/theming';
+
 table {
   width: 100%;
 }
+
+.mat-row:nth-child(odd){
+  background-color: mat-color($mat-grey, 700);
+}
+
+.mat-row:nth-child(even){
+  // background-color: mat-color($mat-grey, 800);
+}
+
