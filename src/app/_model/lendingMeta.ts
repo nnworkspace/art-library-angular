@@ -1,6 +1,6 @@
 /**
  * Art Library of Alpha Org
- * This is a server for Art Library of Alpha Org. 
+ * This is a server for Art Library of Alpha Org.
  *
  * The version of the OpenAPI document: 0.1.0
  * Contact: nnworkspace@gmail.com
@@ -11,7 +11,7 @@
  */
 
 
-export interface LendingMeta { 
+export interface LendingMeta {
     /**
      * ID of a lending record. This is an automatically generated UUID, basically time based.
      */
@@ -26,8 +26,8 @@ export interface LendingMeta {
      */
     userId: string;
     lendingStatus: LendingMeta.LendingStatusEnum;
-    startDate: string;
-    endDate: string;
+    startDate: Date;
+    endDate: Date;
 }
 export namespace LendingMeta {
     export type LendingStatusEnum = 'reserved' | 'sent to lender' | 'return reported' | 'lending closed' | 'record deleted';

@@ -9,7 +9,7 @@
     </div>
   </div>
 
-  <!-- form container -->
+  <!-- detail text container ---->
   <div fxFlex="60" fxLayout="column" fxLayoutAlign="center center">
     <!-- header of the detail, changes text according to usecase -->
     <div *ngIf="usecase === detailUsecase.adminRead ||usecase === detailUsecase.userRead">
@@ -23,7 +23,7 @@
     </div>
 
     <!-- ~~~~~~~~~~~~~~~~~ form of the details ~~~~~~~~~~~~~~~~~~ -->
-    <div class="detailForm">
+    <div class="detailTextBlock">
       <form fxFlex fxLayout="column" fxLayoutAlign="center start"
         [formGroup]="artworkForm" (ngSubmit)="onSubmit()">
         <div class="row">
@@ -154,6 +154,10 @@
       </form>
     </div>
 
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~ admin fields ~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <div></div>
+
+    <!-- ~~~~~~~~~~~~~~~~ buttons for edit and delete ~~~~~~~~~~~~~~~~~ -->
     <div>
       <ng-container *ngIf="usecase === detailUsecase.adminRead">
         <button mat-icon-button (click)="onEdit()">
@@ -165,5 +169,42 @@
       </ng-container>
     </div>
 
+    <!-- ~~~~~~~~~~~~~~~~~~~~~ lending history ~~~~~~~~~~~~~~~~~~~~~~ -->
+    <div *ngIf="usecase === detailUsecase.adminRead || usecase === detailUsecase.adminUpdate"
+         class="detailTextBlock">
+      <ng-container *ngIf="artwork.lendings; else noLendingHistory" >
+        <p>Lending history: </p>
+        <table mat-table [dataSource]="artwork.lendings"
+               class="mat-elevation-z8">
+          <!-- lenderId Column -->
+          <ng-container matColumnDef="userId">
+            <th mat-header-cell *matHeaderCellDef> User ID </th>
+            <td mat-cell *matCellDef="let lending"> {{lending.userId}} </td>
+          </ng-container>
+
+          <!-- lendingStatus Column -->
+          <ng-container matColumnDef="lendingStatus">
+            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <td mat-cell *matCellDef="let lending"> {{lending.lendingStatus}} </td>
+          </ng-container>
+
+          <!-- startDate Column -->
+          <ng-container matColumnDef="startDate">
+            <th mat-header-cell *matHeaderCellDef> Start date </th>
+            <td mat-cell *matCellDef="let lending"> {{lending.startDate | date: "yyyy-MM-dd"}} </td>
+          </ng-container>
+
+          <!-- endDate Column -->
+          <ng-container matColumnDef="endDate">
+            <th mat-header-cell *matHeaderCellDef> End date </th>
+            <td mat-cell *matCellDef="let lending"> {{lending.endDate | date: "yyyy-MM-dd"}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="lendingColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: lendingColumns;"></tr>
+        </table>
+      </ng-container>
+      <ng-template #noLendingHistory>This artwork has no lending history yet. </ng-template>
+    </div>
   </div>
 </div>

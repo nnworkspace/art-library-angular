@@ -24,6 +24,8 @@ export class ArtworkDetailComponent implements OnInit {
   artFormOptions = Object.values(Artwork.ArtFormEnum);
   statusOptions = Object.values(Artwork.StatusEnum);
 
+  lendingColumns: string[] = ['userId', 'lendingStatus', 'startDate', 'endDate'];
+
   constructor(private smileysService: SmileysService,
               private artworkService: ArtworkService,
               private router: Router,

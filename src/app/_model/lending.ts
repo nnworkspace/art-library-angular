@@ -1,6 +1,6 @@
 /**
  * Art Library of Alpha Org
- * This is a server for Art Library of Alpha Org. 
+ * This is a server for Art Library of Alpha Org.
  *
  * The version of the OpenAPI document: 0.1.0
  * Contact: nnworkspace@gmail.com
@@ -13,7 +13,7 @@ import { LendingAllOf } from './lendingAllOf';
 import { NewLending } from './newLending';
 
 
-export interface Lending { 
+export interface Lending {
     /**
      * ID of a artwork. ID of an artwork is a combination of the artist name and the artwork name and optional integer identifier
      */
@@ -28,8 +28,8 @@ export interface Lending {
      */
     userId: string;
     lendingStatus: Lending.LendingStatusEnum;
-    startDate: string;
-    endDate: string;
+    startDate: Date;
+    endDate: Date;
     /**
      * Date and time when this record is created.
      */
