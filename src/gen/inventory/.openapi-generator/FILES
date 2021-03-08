@@ -15,6 +15,7 @@ model/artworkAllOf.ts
 model/artworkMeta.ts
 model/artworkStatus.ts
 model/artworksResponse.ts
+model/lendingMeta.ts
 model/models.ts
 model/newArtwork.ts
 model/tag.ts

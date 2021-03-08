@@ -1,6 +1,6 @@
 /**
  * Art Library of Alpha Org
- * This is a server for Art Library of Alpha Org.
+ * This is a server for Art Library of Alpha Org. 
  *
  * The version of the OpenAPI document: 0.1.0
  * Contact: nnworkspace@gmail.com
@@ -10,10 +10,11 @@
  * Do not edit the class manually.
  */
 import { NewArtwork } from './newArtwork';
+import { LendingMeta } from './lendingMeta';
 import { ArtworkAllOf } from './artworkAllOf';
 
 
-export interface Artwork {
+export interface Artwork { 
     title: string;
     artForm: Artwork.ArtFormEnum;
     description?: string;
@@ -69,6 +70,10 @@ export interface Artwork {
      */
     id: string;
     self: string;
+    /**
+     * A list of lending records of this piece of artwork. If this artwork does not have any lending history, this array can be null.
+     */
+    lendings?: Array<LendingMeta>;
 }
 export namespace Artwork {
     export type ArtFormEnum = 'painting' | 'photograph' | 'print' | 'sculpture' | 'assemblage' | 'collage';

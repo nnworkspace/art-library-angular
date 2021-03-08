@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 import { NewArtwork } from './newArtwork';
+import { LendingMeta } from './lendingMeta';
 import { ArtworkAllOf } from './artworkAllOf';
 
 
@@ -69,6 +70,10 @@ export interface Artwork {
      */
     id: string;
     self: string;
+    /**
+     * A list of lending records of this piece of artwork. If this artwork does not have any lending history, this array can be null.
+     */
+    lendings?: Array<LendingMeta>;
 }
 export namespace Artwork {
     export type ArtFormEnum = 'painting' | 'photograph' | 'print' | 'sculpture' | 'assemblage' | 'collage';

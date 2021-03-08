@@ -9,6 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { LendingMeta } from './lendingMeta';
 
 
 export interface ArtworkAllOf { 
@@ -17,5 +18,9 @@ export interface ArtworkAllOf {
      */
     id: string;
     self: string;
+    /**
+     * A list of lending records of this piece of artwork. If this artwork does not have any lending history, this array can be null.
+     */
+    lendings?: Array<LendingMeta>;
 }
 

@@ -5,5 +5,6 @@ export * from './artworkAllOf';
 export * from './artworkMeta';
 export * from './artworkStatus';
 export * from './artworksResponse';
+export * from './lendingMeta';
 export * from './newArtwork';
 export * from './tag';
