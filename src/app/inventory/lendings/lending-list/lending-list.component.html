@@ -36,5 +36,7 @@
   <tr mat-header-row *matHeaderRowDef="visibleColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: visibleColumns;"></tr>
 </table>
+<!-- ~~~~~~~~~~~~~~~~ Angular material pagination ~~~~~~~~~~~~~~ -->
+<mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
 <!--</ng-container>-->
 </ng-container>

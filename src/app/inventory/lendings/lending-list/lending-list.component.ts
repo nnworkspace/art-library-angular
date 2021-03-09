@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 
 import {LendingMeta} from '../../../_model/lendingMeta';
@@ -17,6 +18,7 @@ export class LendingListComponent implements OnInit, AfterViewInit {
   lendingsTDS: MatTableDataSource<LendingMeta> | null = null;
 
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private smileysService: SmileysService) { }
 
@@ -36,6 +38,7 @@ export class LendingListComponent implements OnInit, AfterViewInit {
       // this.sort.sortChange.emit(sortState);
       console.log(this.smileysService.getSmiley() + ' from LendingListComponent.ngAfterViewInit');
       console.log('is this matSort not null? ' + this.sort);
+      this.lendingsTDS.paginator = this.paginator;
       this.lendingsTDS.sort = this.sort;
     }
   }
