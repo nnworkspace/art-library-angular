@@ -5,18 +5,29 @@
 
 
   <section>
-<!--    <mat-list fxFlex fxLayout>-->
+
+    <mat-paginator [length]="artworkMetas?.length" pageSize=10
+                   (page)="getPaginatorData($event)" [pageSizeOptions]="[10, 20, 30]"
+                   showFirstLastButtons>
+    </mat-paginator>
+
+    <mat-list>
 <!--        <mat-list-item >-->
-    <div fxLayout="row wrap"
-         fxLayoutGap="20px"
-         fxLayoutAlign="flex-start">
-      <app-artwork-item
-        *ngFor="let artworkEl of artworkMetas; let i = index"
-        [artwork]="artworkEl"
-        [index]="i"
-        [useCase]="itemUsecase.admin"></app-artwork-item>
-    </div>
+      <div fxLayout="row wrap"
+           fxLayoutGap="20px"
+           fxLayoutAlign="flex-start">
+        <app-artwork-item
+          *ngFor="let artworkEl of (artworkMetas | slice: itemIndexLower : itemIndexUpper); let i = index"
+          [artwork]="artworkEl"
+          [index]="i"
+          [useCase]="itemUsecase.admin"></app-artwork-item>
+      </div>
 <!--        </mat-list-item>-->
-<!--    </mat-list>-->
+    </mat-list>
+
+    <mat-paginator [length]="artworkMetas?.length" pageSize=10
+                   (page)="getPaginatorData($event)" [pageSizeOptions]="[10, 20, 30]"
+                   showFirstLastButtons>
+    </mat-paginator>
   </section>
 </div>

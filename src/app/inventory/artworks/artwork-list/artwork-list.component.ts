@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
+import {PageEvent} from '@angular/material/paginator';
 
 import {ArtworkService} from '../artwork.service';
 import {ArtworkMeta} from '../../../_model/artworkMeta';
@@ -16,6 +17,9 @@ export class ArtworkListComponent implements OnInit, OnDestroy {
 
   artworkMetas: ArtworkMeta[] | null = null;
   subscription!: Subscription;
+
+  itemIndexLower = 0;
+  itemIndexUpper = 12;
 
   constructor(private artworkService: ArtworkService,
               private router: Router,
@@ -33,6 +37,13 @@ export class ArtworkListComponent implements OnInit, OnDestroy {
 
   onNewArtwork(): void {
     this.router.navigate(['new'], {relativeTo: this.route});
+  }
+
+  // used to build an array of artworkMetas relevant at any given time
+  getPaginatorData(event: PageEvent): PageEvent {
+    this.itemIndexLower = event.pageIndex * event.pageSize;
+    this.itemIndexUpper = this.itemIndexLower + event.pageSize;
+    return event;
   }
 
   ngOnDestroy(): void {
