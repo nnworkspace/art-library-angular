@@ -13,13 +13,13 @@
   <div fxFlex="60" fxLayout="column" fxLayoutAlign="center center">
     <!-- header of the detail, changes text according to usecase -->
     <div *ngIf="usecase === detailUsecase.adminRead ||usecase === detailUsecase.userRead">
-      <h2>Details of the Artwork {{artworkId}}</h2>
+      <h2>Details of the Artwork <i>{{artworkId}}</i></h2>
     </div>
     <div *ngIf="usecase === detailUsecase.adminCreate">
       <h2>Add a New Piece of Artwork</h2>
     </div>
     <div *ngIf="usecase === detailUsecase.adminUpdate">
-      <h2>Update Artwork {{artworkId}}</h2>
+      <h2>Update Artwork <i>{{artworkId}}</i></h2>
     </div>
 
     <!-- ~~~~~~~~~~~~~~~~~ form of the details ~~~~~~~~~~~~~~~~~~ -->
@@ -155,18 +155,37 @@
     </div>
 
     <!-- ~~~~~~~~~~~~~~~~~~~~~~ admin fields ~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    <div></div>
+    <div *ngIf="usecase === detailUsecase.adminRead || usecase === detailUsecase.adminUpdate"
+         class="row">
+      <mat-form-field>
+        <mat-label>added on</mat-label>
+        <input matInput [disabled]="true" [value]="artwork.createdOn | date: 'yyyy-MM-dd'">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>added by</mat-label>
+        <input matInput [disabled]="true" [value]="artwork.createdBy">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>last update on</mat-label>
+        <input matInput [disabled]="true" [value]="artwork.lastUpdatedOn | date: 'yyyy-MM-dd'">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>last update by</mat-label>
+        <input matInput [disabled]="true" [value]="artwork.lastUpdatedBy">
+      </mat-form-field>
+    </div>
 
     <!-- ~~~~~~~~~~~~~~~~ buttons for edit and delete ~~~~~~~~~~~~~~~~~ -->
-    <div>
-      <ng-container *ngIf="usecase === detailUsecase.adminRead">
-        <button mat-icon-button (click)="onEdit()">
-          <mat-icon color="accent">edit</mat-icon>
-        </button>
-        <button mat-icon-button>
-          <mat-icon color="warn">delete</mat-icon>
-        </button>
-      </ng-container>
+    <div *ngIf="usecase === detailUsecase.adminRead">
+      <button mat-icon-button (click)="onEdit()">
+        <mat-icon color="accent">edit</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon color="warn">delete</mat-icon>
+      </button>
     </div>
 
     <!-- ~~~~~~~~~~~~~~~~~~~~~ lending history ~~~~~~~~~~~~~~~~~~~~~~ -->
