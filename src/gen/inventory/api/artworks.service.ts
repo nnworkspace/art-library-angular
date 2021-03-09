@@ -17,6 +17,8 @@ import { HttpClient, HttpHeaders, HttpParams,
 import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
+import { ArtForm } from '../model/models';
+import { ArtworkStatus } from '../model/models';
 import { ArtworksResponse } from '../model/models';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -92,13 +94,16 @@ export class ArtworksService {
      * @param title name of the artwork, can be a partial string of name
      * @param description description of the artwork, can be a partial string of description
      * @param artists (Partial) name of the artists, relationship between the artists in the parameter list is \&#39;or\&#39;.
+     * @param artForm 
+     * @param artworkStatus 
+     * @param availableFrom 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getArtworks(limit: number, offset: number, title?: string, description?: string, artists?: Array<string>, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<ArtworksResponse>;
-    public getArtworks(limit: number, offset: number, title?: string, description?: string, artists?: Array<string>, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<ArtworksResponse>>;
-    public getArtworks(limit: number, offset: number, title?: string, description?: string, artists?: Array<string>, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<ArtworksResponse>>;
-    public getArtworks(limit: number, offset: number, title?: string, description?: string, artists?: Array<string>, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
+    public getArtworks(limit: number, offset: number, title?: string, description?: string, artists?: Array<string>, artForm?: ArtForm, artworkStatus?: ArtworkStatus, availableFrom?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<ArtworksResponse>;
+    public getArtworks(limit: number, offset: number, title?: string, description?: string, artists?: Array<string>, artForm?: ArtForm, artworkStatus?: ArtworkStatus, availableFrom?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpResponse<ArtworksResponse>>;
+    public getArtworks(limit: number, offset: number, title?: string, description?: string, artists?: Array<string>, artForm?: ArtForm, artworkStatus?: ArtworkStatus, availableFrom?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json'}): Observable<HttpEvent<ArtworksResponse>>;
+    public getArtworks(limit: number, offset: number, title?: string, description?: string, artists?: Array<string>, artForm?: ArtForm, artworkStatus?: ArtworkStatus, availableFrom?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json'}): Observable<any> {
         if (limit === null || limit === undefined) {
             throw new Error('Required parameter limit was null or undefined when calling getArtworks.');
         }
@@ -118,6 +123,18 @@ export class ArtworksService {
         if (artists) {
             queryParameters = this.addToHttpParams(queryParameters,
                 artists.join(COLLECTION_FORMATS['csv']), 'artists');
+        }
+        if (artForm !== undefined && artForm !== null) {
+          queryParameters = this.addToHttpParams(queryParameters,
+            <any>artForm, 'artForm');
+        }
+        if (artworkStatus !== undefined && artworkStatus !== null) {
+          queryParameters = this.addToHttpParams(queryParameters,
+            <any>artworkStatus, 'artworkStatus');
+        }
+        if (availableFrom !== undefined && availableFrom !== null) {
+          queryParameters = this.addToHttpParams(queryParameters,
+            <any>availableFrom, 'availableFrom');
         }
         if (limit !== undefined && limit !== null) {
           queryParameters = this.addToHttpParams(queryParameters,

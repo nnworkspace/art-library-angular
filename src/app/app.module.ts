@@ -25,7 +25,6 @@ import {LendingListComponent} from './inventory/lendings/lending-list/lending-li
 import {LendingDetailComponent} from './inventory/lendings/lending-detail/lending-detail.component';
 import {LendingItemComponent} from './inventory/lendings/lending-list/lending-item/lending-item.component';
 import {LendingsFilterComponent} from './inventory/lendings/lending-list/lendings-filter/lendings-filter.component';
-import {ArtworksFilterComponent} from './inventory/artworks/artwork-list/artworks-filter/artworks-filter.component';
 import {DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
 import {DATE_ISO_FORMATS, DateIsoAdapter} from './_common/date-iso.adapter';
 import { ArtworksComponent } from './inventory/artworks/artworks.component';
@@ -49,7 +48,6 @@ import { ArtworksComponent } from './inventory/artworks/artworks.component';
     LendingDetailComponent,
     LendingItemComponent,
     LendingsFilterComponent,
-    ArtworksFilterComponent,
     ArtworksComponent
   ],
   imports: [

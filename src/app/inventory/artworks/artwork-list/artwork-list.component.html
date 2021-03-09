@@ -1,15 +1,72 @@
 <div fxLayout="column">
   <section>
-    filter form
+    <!-- ~~~~~~~~~~~~~~~~~ form for filtering artworks ~~~~~~~~~~~~~~~~~~ -->
+    <div class="filterFormWrapper">
+      <form fxFlex fxLayout="column" fxLayoutAlign="center start"
+            [formGroup]="awFilterForm" (ngSubmit)="onFilterFormSubmit()">
+        <div class="row">
+          <mat-form-field fxFlex="30">
+            <mat-label>title</mat-label>
+            <input matInput formControlName="title">
+            <!--        <mat-hint>Please enter the title of the artwork.</mat-hint>-->
+<!--            <mat-error>Missing artwork title!</mat-error>-->
+          </mat-form-field>
+
+          <mat-form-field fxFlex="20">
+            <mat-label>artists</mat-label>
+            <input matInput formControlName="artists">
+          </mat-form-field>
+
+          <mat-form-field fxFlex="50">
+            <mat-label>description</mat-label>
+            <input matInput formControlName="description">
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <mat-form-field>
+            <mat-label>art form</mat-label>
+            <mat-select formControlName="artForm">
+              <mat-option *ngFor="let artformOption of artFormOptions" [value]="artformOption">
+                {{artformOption}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>status</mat-label>
+            <mat-select formControlName="artworkStatus">
+              <mat-option *ngFor="let statusOption of statusOptions" [value]="statusOption">
+                {{statusOption}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>available from</mat-label>
+            <input matInput [matDatepicker]="avaiableFromDatePicker"
+                   formControlName="availableFrom">
+            <mat-datepicker-toggle matSuffix [for]="avaiableFromDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #avaiableFromDatePicker></mat-datepicker>
+          </mat-form-field>
+
+          <button type="button" mat-button (click)="onFilterFormReset()">
+            <mat-icon color="accent">clear</mat-icon>
+          </button>
+          <button type="button" mat-button (click)="onFilterFormSubmit()">
+            <mat-icon color="primary">search</mat-icon>
+          </button>
+        </div>
+
+      </form>
+    </div> <!-- end of direct form wrapper -->
   </section>
 
-
   <section>
-
-    <mat-paginator [length]="artworkMetas?.length" pageSize=10
-                   (page)="getPaginatorData($event)" [pageSizeOptions]="[10, 20, 30]"
-                   showFirstLastButtons>
-    </mat-paginator>
+<!--    <mat-paginator [length]="artworkMetas?.length" pageSize=10-->
+<!--                   (page)="getPaginatorData($event)" [pageSizeOptions]="[10, 20, 30]"-->
+<!--                   showFirstLastButtons>-->
+<!--    </mat-paginator>-->
 
     <mat-list>
 <!--        <mat-list-item >-->
