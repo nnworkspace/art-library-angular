@@ -5,7 +5,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ArtworkMeta} from '../../../../_model/artworkMeta';
 import {ArtworkItemUsecaseEnum} from '../../artwork-item-usecase-enum.model';
 import {ArtworkDetailUsecaseEnum} from '../../artwork-detail-usecase-enum.model';
-import {ArtworkService} from '../../artwork.service';
 
 @Component({
   selector: 'app-artwork-item',
@@ -21,7 +20,6 @@ export class ArtworkItemComponent implements OnInit {
   detailUsecase: typeof ArtworkDetailUsecaseEnum = ArtworkDetailUsecaseEnum;
 
   constructor(private smileysService: SmileysService,
-              private artworkService: ArtworkService,
               private router: Router,
               private route: ActivatedRoute) {}
 

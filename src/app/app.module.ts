@@ -1,5 +1,9 @@
 import {NgModule} from '@angular/core';
+import {BASE_PATH} from './_gen/inventory';
+import {environment} from '../environments/environment';
+
 import {BrowserModule} from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MaterialModule} from './material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
@@ -29,6 +33,7 @@ import {DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
 import {DATE_ISO_FORMATS, DateIsoAdapter} from './_common/date-iso.adapter';
 import { ArtworksComponent } from './inventory/artworks/artworks.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,18 +58,19 @@ import { ArtworksComponent } from './inventory/artworks/artworks.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MaterialModule,
     AppRoutingModule,
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [AuthService, {
-    provide: DateAdapter, useClass: DateIsoAdapter
-  },
-    {
-      provide: MAT_DATE_FORMATS, useValue: DATE_ISO_FORMATS
-    }],
+  providers: [
+    AuthService,
+    { provide: BASE_PATH, useValue: environment.API_BASE_PATH },
+    { provide: DateAdapter, useClass: DateIsoAdapter},
+    { provide: MAT_DATE_FORMATS, useValue: DATE_ISO_FORMATS}
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
