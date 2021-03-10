@@ -6,7 +6,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ArtworkDetailUsecaseEnum} from '../artwork-detail-usecase-enum.model';
 import {SmileysService} from '../../../_common/smileys.service';
 import {ArtworkService} from '../artwork.service';
-import {Artwork} from '../../../_model/artwork';
+import {Artwork} from '../../../_gen/inventory';
 
 @Component({
   selector: 'app-artwork-detail',

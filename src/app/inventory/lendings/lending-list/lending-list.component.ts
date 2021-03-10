@@ -3,8 +3,8 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 
-import {LendingMeta} from '../../../_model/lendingMeta';
 import {SmileysService} from '../../../_common/smileys.service';
+import {LendingMeta} from '../../../_gen/inventory';
 
 @Component({
   selector: 'app-lending-list',

@@ -1,10 +1,10 @@
 import {SmileysService} from '../../../../_common/smileys.service';
 
 import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {ArtworkMeta} from '../../../../_model/artworkMeta';
+import {Router} from '@angular/router';
 import {ArtworkItemUsecaseEnum} from '../../artwork-item-usecase-enum.model';
 import {ArtworkDetailUsecaseEnum} from '../../artwork-detail-usecase-enum.model';
+import {ArtworkMeta} from '../../../../_gen/inventory';
 
 @Component({
   selector: 'app-artwork-item',
@@ -20,8 +20,7 @@ export class ArtworkItemComponent implements OnInit {
   detailUsecase: typeof ArtworkDetailUsecaseEnum = ArtworkDetailUsecaseEnum;
 
   constructor(private smileysService: SmileysService,
-              private router: Router,
-              private route: ActivatedRoute) {}
+              private router: Router) {}
 
   ngOnInit(): void {
   }

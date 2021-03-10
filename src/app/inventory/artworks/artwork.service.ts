@@ -5,8 +5,8 @@ import artworkJson2 from '../../../assets/example_data_jsons/get_artwork_by_id_r
 import {Injectable} from '@angular/core';
 
 import {Observable, Subject} from 'rxjs';
-import {ArtworkMeta} from '../../_model/artworkMeta';
-import {Artwork} from '../../_model/artwork';
+import {Artwork, ArtworkMeta} from '../../_gen/inventory';
+
 
 @Injectable({ providedIn: 'root' })
 export class ArtworkService {
