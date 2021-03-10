@@ -1,6 +1,6 @@
 /**
  * Art Library of Alpha Org
- * This is a server for Art Library of Alpha Org. 
+ * This is a server for Art Library of Alpha Org.
  *
  * The version of the OpenAPI document: 0.1.0
  * Contact: nnworkspace@gmail.com
@@ -94,9 +94,9 @@ export class ArtworksService {
      * @param title name of the artwork, can be a partial string of name
      * @param description description of the artwork, can be a partial string of description
      * @param artists (Partial) name of the artists, relationship between the artists in the parameter list is \&#39;or\&#39;.
-     * @param artForm 
-     * @param artworkStatus 
-     * @param availableFrom 
+     * @param artForm
+     * @param artworkStatus
+     * @param availableFrom
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */

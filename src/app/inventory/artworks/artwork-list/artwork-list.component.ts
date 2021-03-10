@@ -4,10 +4,10 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {PageEvent} from '@angular/material/paginator';
 
-import {Artwork} from '../../../_model/artwork';
-import {ArtworkService} from '../artwork.service';
+import {Artwork, ArtworkMeta, ArtworksService} from '../../../_gen/inventory';
+// import {ArtworkService} from '../artwork.service';
 import {SmileysService} from '../../../_common/smileys.service';
-import {ArtworkMeta} from '../../../_model/artworkMeta';
+
 import {ArtworkItemUsecaseEnum} from '../artwork-item-usecase-enum.model';
 
 @Component({
@@ -18,31 +18,36 @@ import {ArtworkItemUsecaseEnum} from '../artwork-item-usecase-enum.model';
 export class ArtworkListComponent implements OnInit, OnDestroy {
   itemUsecase: typeof ArtworkItemUsecaseEnum = ArtworkItemUsecaseEnum;
 
-  artworkMetas: ArtworkMeta[] | null = null;
+  artworkMetas: ArtworkMeta[] | undefined;
   subscription!: Subscription;
 
   awFilterForm!: FormGroup;
   artFormOptions = Object.values(Artwork.ArtFormEnum);
   statusOptions = Object.values(Artwork.StatusEnum);
 
+  readonly DEFAULT_PAGE_SIZE = 20;
+  readonly DEFAULT_ITEM_OFFSET = 0;
   itemIndexLower = 0;
-  itemIndexUpper = 12;
+  itemIndexUpper = 20;
 
-  constructor(private artworkService: ArtworkService,
-              private smileysService: SmileysService,
-              private router: Router,
-              private route: ActivatedRoute) { }
+  constructor( private artworksApiGateway: ArtworksService,
+               // private artworkService: ArtworkService,
+               private smileysService: SmileysService,
+               private router: Router,
+               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.initArtworkFilterForm();
 
-    this.subscription = this.artworkService.artworksChange
-      .subscribe(
-        (changes: ArtworkMeta[]) => {
-          this.artworkMetas = changes;
-        }
-      );
-    this.artworkMetas = this.artworkService.getArtworkMetas();
+    const artworksResponse$ = this.artworksApiGateway
+      .getArtworks(this.DEFAULT_PAGE_SIZE, this.DEFAULT_ITEM_OFFSET,
+        undefined, undefined, undefined,
+        undefined, undefined, undefined);
+
+    artworksResponse$.subscribe( resp => {
+      this.artworkMetas = resp.artworkMetas;
+      console.log(this.smileysService.getSmiley() + ' from ArtworkListComponent.ngOnInit, this.artworkMetas: ' + this.artworkMetas);
+    });
   }
 
   private initArtworkFilterForm(): void {

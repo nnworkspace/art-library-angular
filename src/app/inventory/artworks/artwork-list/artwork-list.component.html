@@ -82,8 +82,8 @@
 <!--        </mat-list-item>-->
     </mat-list>
 
-    <mat-paginator [length]="artworkMetas?.length" pageSize=10
-                   (page)="getPaginatorData($event)" [pageSizeOptions]="[10, 20, 30]"
+    <mat-paginator [length]="artworkMetas?.length" pageSize="DEFAULT_PAGE_SIZE"
+                   (page)="getPaginatorData($event)"
                    showFirstLastButtons>
     </mat-paginator>
   </section>

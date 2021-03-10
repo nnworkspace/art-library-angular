@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {BASE_PATH} from './_gen/inventory';
+import {ApiModule, BASE_PATH, Configuration, ConfigurationParameters} from './_gen/inventory';
 import {environment} from '../environments/environment';
 
 import {BrowserModule} from '@angular/platform-browser';
@@ -33,6 +33,14 @@ import {DateAdapter, MAT_DATE_FORMATS} from '@angular/material/core';
 import {DATE_ISO_FORMATS, DateIsoAdapter} from './_common/date-iso.adapter';
 import { ArtworksComponent } from './inventory/artworks/artworks.component';
 
+export function apiConfigFactory(): Configuration {
+  const params: ConfigurationParameters = {
+    credentials: {
+      api_key: environment.api_key
+    }
+  };
+  return new Configuration(params);
+}
 
 @NgModule({
   declarations: [
@@ -63,7 +71,8 @@ import { ArtworksComponent } from './inventory/artworks/artworks.component';
     AppRoutingModule,
     FlexLayoutModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ApiModule.forRoot(apiConfigFactory)
   ],
   providers: [
     AuthService,
