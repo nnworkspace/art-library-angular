@@ -5,6 +5,12 @@ This is the Angular frontend for the App *Artwork Library of Alpha Org*.
 ## Prerequisites for building this project
 
 1. Install tools: nodejs, npm, and angular cli.
+
+1. Install OpenAPI Generator for npm
+    ```shell
+    npm install @openapitools/openapi-generator-cli -g
+    openapi-generator-cli version
+    ```
    
 1. Clone the [art-library-api Repository](https://github.com/nnworkspace/art-library-api) to your
    local computer. Path of the API project must be this project's *sibling*.
@@ -17,12 +23,6 @@ This is the Angular frontend for the App *Artwork Library of Alpha Org*.
     "start": "ng serve",
     "prebuild": "npm run gen:api:inventory && npm run gen:api:lending",
    ```
-
-1. Install OpenAPI Generator for npm
-    ```shell
-    npm install @openapitools/openapi-generator-cli -g
-    openapi-generator-cli version
-    ```
 
 1. Install an API mock server of your choice. I recommend the [Stoplight Prism mock server](https://github.com/stoplightio/prism). Go through the installation instruction [here](https://github.com/stoplightio/prism).
 
