@@ -44,8 +44,8 @@ export class ArtworkListComponent implements OnInit, OnDestroy {
         undefined, undefined, undefined,
         undefined, undefined, undefined);
 
-    artworksResponse$.subscribe( resp => {
-      this.artworkMetas = resp.artworkMetas;
+    artworksResponse$.subscribe( artworksResponse => {
+      this.artworkMetas = artworksResponse.artworkMetas;
       console.log(this.smileysService.getSmiley() + ' from ArtworkListComponent.ngOnInit, this.artworkMetas: ' + this.artworkMetas);
     });
   }

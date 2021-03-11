@@ -26,6 +26,9 @@ This is the Angular frontend for the App *Artwork Library of Alpha Org*.
 
 1. Install an API mock server of your choice. I recommend the [Stoplight Prism mock server](https://github.com/stoplightio/prism). Go through the installation instruction [here](https://github.com/stoplightio/prism).
 
+1. The real backend server can be cloned from [art-library-express Repository](https://github.com/nnworkspace/art-library-express) to your
+   local computer. Path of the API project should be this project's *sibling*. Refer to the `README.md` of the backend to run the express server.
+
 1. Run the backend API server for development or test. It can be a real server or a mock server. I use prism mock server during the development.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.1.

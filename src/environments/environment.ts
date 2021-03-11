@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  API_BASE_PATH: 'http://127.0.0.1:4010',  // prism mock server
-  api_key: 'prism_mock_api_key'
+  // API_BASE_PATH: 'http://127.0.0.1:4010',  // prism mock server
+  API_BASE_PATH: 'http://localhost:3000',
+  api_key: 'local_express_api_key'
 };
 
 /*
