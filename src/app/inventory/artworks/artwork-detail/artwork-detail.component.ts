@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 
@@ -29,8 +28,7 @@ export class ArtworkDetailComponent implements OnInit {
   constructor(private smileysService: SmileysService,
               private artworkService: ArtworkService,
               private router: Router,
-              private route: ActivatedRoute,
-              private location: Location) {
+              private route: ActivatedRoute) {
     console.log(smileysService.getSmiley() + ' from ArtworkDetailComponent constructor');
 
     this.usecase = this.router.getCurrentNavigation()?.extras.state?.artworkDetailUsecase;
