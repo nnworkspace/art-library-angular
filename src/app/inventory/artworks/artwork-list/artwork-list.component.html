@@ -1,4 +1,8 @@
 <div fxLayout="column">
+  <div *ngIf="messageToShow" class="row">
+    {{messageToShow}}
+  </div>
+
   <section>
     <!-- ~~~~~~~~~~~~~~~~~ form for filtering artworks ~~~~~~~~~~~~~~~~~~ -->
     <div class="filterFormWrapper">

@@ -31,7 +31,7 @@ import { Configuration }                                     from '../configurat
 })
 export class ArtworkService {
 
-    protected basePath = 'https://virtserver.swaggerhub.com/nnworkspace/artlibrary/1.0.0';
+    protected basePath = 'https://localhost:3000';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
     public encoder: HttpParameterCodec;
@@ -266,18 +266,18 @@ export class ArtworkService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public replaceColorAtSelfURL(apiKey: string, artworkId: string, artwork: Artwork, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<any>;
-    public replaceColorAtSelfURL(apiKey: string, artworkId: string, artwork: Artwork, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<HttpResponse<any>>;
-    public replaceColorAtSelfURL(apiKey: string, artworkId: string, artwork: Artwork, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<HttpEvent<any>>;
-    public replaceColorAtSelfURL(apiKey: string, artworkId: string, artwork: Artwork, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined}): Observable<any> {
+    public replaceArtworkAtSelfUrl(apiKey: string, artworkId: string, artwork: Artwork, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<any>;
+    public replaceArtworkAtSelfUrl(apiKey: string, artworkId: string, artwork: Artwork, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<HttpResponse<any>>;
+    public replaceArtworkAtSelfUrl(apiKey: string, artworkId: string, artwork: Artwork, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined}): Observable<HttpEvent<any>>;
+    public replaceArtworkAtSelfUrl(apiKey: string, artworkId: string, artwork: Artwork, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined}): Observable<any> {
         if (apiKey === null || apiKey === undefined) {
-            throw new Error('Required parameter apiKey was null or undefined when calling replaceColorAtSelfURL.');
+            throw new Error('Required parameter apiKey was null or undefined when calling replaceArtworkAtSelfUrl.');
         }
         if (artworkId === null || artworkId === undefined) {
-            throw new Error('Required parameter artworkId was null or undefined when calling replaceColorAtSelfURL.');
+            throw new Error('Required parameter artworkId was null or undefined when calling replaceArtworkAtSelfUrl.');
         }
         if (artwork === null || artwork === undefined) {
-            throw new Error('Required parameter artwork was null or undefined when calling replaceColorAtSelfURL.');
+            throw new Error('Required parameter artwork was null or undefined when calling replaceArtworkAtSelfUrl.');
         }
 
         let headers = this.defaultHeaders;

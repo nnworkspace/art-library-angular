@@ -36,11 +36,16 @@ export class ArtworkListComponent implements OnInit, OnDestroy {
   itemIndexLower = 0;
   itemIndexUpper = 20;
 
+  messageToShow: string | null = null;
+
   constructor( private artworksApiGateway: ArtworksService,
                // private artworkService: ArtworkService,
                private smileysService: SmileysService,
                private router: Router,
-               private route: ActivatedRoute) { }
+               private route: ActivatedRoute) {
+    this.messageToShow = this.router.getCurrentNavigation()?.extras?.state?.messageToShow;
+    console.log('################# messageToShow: ' + this.messageToShow);
+  }
 
   ngOnInit(): void {
     this.initArtworkFilterForm();

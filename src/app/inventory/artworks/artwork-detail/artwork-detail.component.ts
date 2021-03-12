@@ -4,8 +4,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 
 import {ArtworkDetailUsecaseEnum} from '../artwork-detail-usecase-enum.model';
 import {SmileysService} from '../../../_common/smileys.service';
-import {ArtworkService} from '../artwork.service';
-import {Artwork} from '../../../_gen/inventory';
+// import {ArtworkService} from '../artwork.service';
+import {Artwork, ArtworkService, NewArtwork} from '../../../_gen/inventory';
 
 @Component({
   selector: 'app-artwork-detail',
@@ -26,7 +26,8 @@ export class ArtworkDetailComponent implements OnInit {
   lendingColumns: string[] = ['userId', 'lendingStatus', 'startDate', 'endDate'];
 
   constructor(private smileysService: SmileysService,
-              private artworkService: ArtworkService,
+              // private artworkService: ArtworkService,
+              private artworkApiGateway: ArtworkService,
               private router: Router,
               private route: ActivatedRoute) {
     console.log(smileysService.getSmiley() + ' from ArtworkDetailComponent constructor');
@@ -42,7 +43,7 @@ export class ArtworkDetailComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.artworkId) {
-      this.artwork = this.artworkService.getArtworkById(this.artworkId);
+      // this.artwork = this.artworkService.getArtworkById(this.artworkId);
     }
 
     this.initForm();
@@ -53,19 +54,19 @@ export class ArtworkDetailComponent implements OnInit {
 
     // step 1, initialize all fields with empty strings:
     // let id = '';
-    let ffTitle = '';
+    let ffTitle = null;
     let ffArtForm = Artwork.ArtFormEnum.Painting;
-    let ffDescription: string | undefined = '';
-    let ffStorageLocation = '';
-    let ffArtist: string | undefined = '';
-    let ffProducer: string | undefined = '';
-    let ffProductSerialNumber: string | undefined = '';
+    let ffDescription = null;
+    let ffStorageLocation = null;
+    let ffArtist = null;
+    let ffProducer = null;
+    let ffProductSerialNumber = null;
     const ffImageUrls = new FormArray([]);
     let ffDateObtained: Date = new Date(1970, 1, 1);
     let ffMarketValue: number | undefined;
     let ffStatus = Artwork.StatusEnum.Available;
     let ffNextAvailableDate = new Date();
-    let ffComment: string | undefined = '';
+    let ffComment = null;
 
     // in case of admin editing an existing artwork record,
     // assign the current artwork property values to the form fields.
@@ -93,19 +94,19 @@ export class ArtworkDetailComponent implements OnInit {
 
     this.artworkForm = new FormGroup({
       title: new FormControl({value: ffTitle, disabled: this.readOnly()},
-        Validators.required),
+        {validators: [Validators.required]}),
       artForm: new FormControl({value: ffArtForm, disabled: this.readOnly()},
-        Validators.required),
+        {validators: [Validators.required]}),
       description: new FormControl({value: ffDescription, disabled: this.readOnly()}),
       storageLocation: new FormControl({value: ffStorageLocation, disabled: this.readOnly()},
-        Validators.required),
+        {validators: [Validators.required]}),
       artist: new FormControl({value: ffArtist, disabled: this.readOnly()}),
       producer: new FormControl({value: ffProducer, disabled: this.readOnly()}),
       productSerialNumber: new FormControl({value: ffProductSerialNumber, disabled: this.readOnly()}),
       dateObtained: new FormControl({value: ffDateObtained, disabled: this.readOnly()}),
       marketValue: new FormControl({value: ffMarketValue, disabled: this.readOnly()}),
       status: new FormControl({value: ffStatus, disabled: this.readOnly()},
-        Validators.required),
+        {validators: [Validators.required]}),
       nextAvailableDate: new FormControl({value: ffNextAvailableDate, disabled: this.readOnly()}),
       imageUrls: ffImageUrls,
       comment: new FormControl({value: ffComment, disabled: this.readOnly()})
@@ -154,11 +155,21 @@ export class ArtworkDetailComponent implements OnInit {
       });
 
     } else if (this.usecase === this.detailUsecase.adminCreate) {
-      // this.location.back();
+      this.backToCallerUrl();
+    }
+  }
 
-      // back to previous page
-      const { returnUrl } = window.history.state;
-      console.log('redirect on cancel: ' + returnUrl);
+  private backToCallerUrl(message?: string): void {
+    // back to previous page
+    const {returnUrl} = window.history.state;
+    console.log('back to caller URL: ' + returnUrl + ', message: ' + message);
+    if (message) {
+      this.router.navigateByUrl(returnUrl || '', {
+        state: {
+          messageToShow: message
+        }
+      });
+    } else {
       this.router.navigateByUrl(returnUrl || '');
     }
   }
@@ -172,10 +183,12 @@ export class ArtworkDetailComponent implements OnInit {
     if (this.usecase === this.detailUsecase.adminUpdate) {
 
     } else if (this.usecase === this.detailUsecase.adminCreate) {
-
+      const newArtwork: NewArtwork = this.artworkForm.value;
+      this.artworkApiGateway.addArtwork(newArtwork).subscribe((respData) => {
+        console.log(respData.message);
+        this.backToCallerUrl(respData.message);
+      });
     }
-
-    this.onCancel();
   }
 
   editable(): boolean {

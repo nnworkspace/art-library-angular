@@ -30,7 +30,7 @@ import { Configuration }                                     from '../configurat
 })
 export class LendingService {
 
-    protected basePath = 'https://virtserver.swaggerhub.com/nnworkspace/artlibrary/1.0.0';
+    protected basePath = 'https://localhost:3000';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
     public encoder: HttpParameterCodec;

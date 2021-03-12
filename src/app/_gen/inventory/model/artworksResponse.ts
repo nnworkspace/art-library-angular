@@ -14,6 +14,7 @@ import { ArtworkMeta } from './artworkMeta';
 
 export interface ArtworksResponse { 
     totalArtworks?: number;
+    offset?: number;
     artworkMetas?: Array<ArtworkMeta>;
 }
 
