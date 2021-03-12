@@ -34,7 +34,10 @@ export class ArtworkDetailComponent implements OnInit {
     console.log(smileysService.getSmiley() + ' from ArtworkDetailComponent constructor');
 
     this.usecase = this.router.getCurrentNavigation()?.extras.state?.artworkDetailUsecase;
-    this.artworkId = this.route.snapshot.paramMap.get('artworkId');
+
+    if (this.usecase !== ArtworkDetailUsecaseEnum.adminCreate) {
+      this.artworkId = this.route.snapshot.paramMap.get('artworkId');
+    }
 
     console.log('usecase: ' + this.usecase);
   }
@@ -153,8 +156,12 @@ export class ArtworkDetailComponent implements OnInit {
       });
 
     } else if (this.usecase === this.detailUsecase.adminCreate) {
-      // this.router.navigate(['../'], {relativeTo: this.route});
-      this.location.back();
+      // this.location.back();
+
+      // back to previous page
+      const { returnUrl } = window.history.state;
+      console.log('redirect on cancel: ' + returnUrl);
+      this.router.navigateByUrl(returnUrl || '');
     }
   }
 

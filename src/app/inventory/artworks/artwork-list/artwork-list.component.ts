@@ -8,7 +8,9 @@ import {Artwork, ArtworkMeta, ArtworksService} from '../../../_gen/inventory';
 // import {ArtworkService} from '../artwork.service';
 import {SmileysService} from '../../../_common/smileys.service';
 
+import {ArtworkListUsecaseEnum} from '../artwork-list-usecase-enum.model';
 import {ArtworkItemUsecaseEnum} from '../artwork-item-usecase-enum.model';
+import {ArtworkDetailUsecaseEnum} from '../artwork-detail-usecase-enum.model';
 
 @Component({
   selector: 'app-artwork-list',
@@ -16,10 +18,14 @@ import {ArtworkItemUsecaseEnum} from '../artwork-item-usecase-enum.model';
   styleUrls: ['./artwork-list.component.scss']
 })
 export class ArtworkListComponent implements OnInit, OnDestroy {
+  usecase = ArtworkListUsecaseEnum.admin;
+
   itemUsecase: typeof ArtworkItemUsecaseEnum = ArtworkItemUsecaseEnum;
+  listUsecase: typeof ArtworkListUsecaseEnum = ArtworkListUsecaseEnum;
+  awDetailUsecase: typeof ArtworkDetailUsecaseEnum = ArtworkDetailUsecaseEnum;
 
   artworkMetas: ArtworkMeta[] | undefined;
-  subscription!: Subscription;
+  // subscription!: Subscription;
 
   awFilterForm!: FormGroup;
   artFormOptions = Object.values(Artwork.ArtFormEnum);
@@ -70,7 +76,12 @@ export class ArtworkListComponent implements OnInit, OnDestroy {
   }
 
   onNewArtwork(): void {
-    this.router.navigate(['new'], {relativeTo: this.route});
+    this.router.navigate(['/artworks/new'], {
+      state: {
+        artworkDetailUsecase: this.awDetailUsecase.adminCreate,
+        returnUrl: this.router.routerState.snapshot.url
+      }
+    });
   }
 
   // used to build an array of artworkMetas relevant at any given time
@@ -81,6 +92,6 @@ export class ArtworkListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
   }
 }

@@ -56,6 +56,12 @@
           <button type="button" mat-button (click)="onFilterFormSubmit()">
             <mat-icon color="primary">search</mat-icon>
           </button>
+
+          <div *ngIf="usecase === listUsecase.admin" fxFlex fxLayout fxLayoutAlign="flex-end">
+            <button type="button" mat-button (click)="onNewArtwork()">
+              <mat-icon color="primary">add</mat-icon> add artwork
+            </button>
+          </div>
         </div>
 
       </form>
